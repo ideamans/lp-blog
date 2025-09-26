@@ -26,7 +26,7 @@ const category = computed(() => {
         <a
           class="text-3xl flex flex-row items-center"
           href="/"
-          aria-label="ideaman's Notes"
+          aria-label="ideaman's Today"
         >
           <img
             class="inline-block mr-2"
@@ -36,20 +36,11 @@ const category = computed(() => {
           />
           <span
             v-if="!frontmatter.index"
-            class="hidden md:inline dark:text-white"
-            >Notes</span
+            class="hidden md:inline text-gray-500 dark:text-gray-400"
+            >Today</span
           >
         </a>
         <div class="text-sm text-gray-500 dark:text-white leading-5">
-          <!-- <a class="hover:text-gray-700 dark:hover:text-gray-200" href="https://github.com/ideamans/notes"
-            target="_blank" rel="noopener"><span class="hidden sm:inline">GitHub </span>Source</a>
-          <span class="mr-2 ml-2">·</span> -->
-          <a
-            class="hover:text-gray-700 dark:hover:text-gray-200"
-            href="/feed.rss"
-            >RSS<span class="hidden sm:inline"> Feed</span></a
-          >
-          <span class="mr-2 ml-2">·</span>
           <a
             class="hover:text-gray-700 dark:hover:text-gray-200"
             href="https://www.ideamans.com/"
@@ -60,7 +51,7 @@ const category = computed(() => {
         </div>
       </nav>
     </div>
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 xl:max-w-6xl xl:px-0">
+    <main class="max-w-4xl mx-auto px-4 sm:px-6">
       <Home v-if="frontmatter.index" />
       <Category v-else-if="category" :category="category" />
       <NotFound v-else-if="page.isNotFound" />

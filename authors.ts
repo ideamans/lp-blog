@@ -1,6 +1,7 @@
 export interface Author {
   name: string
   username: string
+  title: string
   email: string
   image: string
   bio: string
@@ -8,7 +9,8 @@ export interface Author {
 
 export const authors: Author[] = [
   {
-    name: '代表取締役 宮永',
+    name: '代表取締役 宮永 邦彦',
+    title: '画像最適化・フロントエンド高速化スペシャリスト',
     username: 'miyanaga',
     email: 'miyanaga@ideamans.com',
     image: 'https://gravatar.com/avatar/53ea23014763c68cf72d3d3e65dc0dd6',

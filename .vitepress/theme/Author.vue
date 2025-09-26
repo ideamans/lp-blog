@@ -19,7 +19,7 @@ const author = authors.find((a) => a.username === frontmatter.value.author)
         <li class="flex items-center space-x-2">
           <img
             v-if="author?.image"
-            :src="`https://notes.ideamans.com${author.image}`"
+            :src="`https://today.ideamans.com${author.image}`"
             alt="author image"
             class="w-10 h-10 rounded-full"
           />

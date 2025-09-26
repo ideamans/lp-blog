@@ -40,7 +40,7 @@ async function getRandomPost() {
 async function main() {
   const { content, relativePath } = await getRandomPost()
 
-  const entryUrl = `https://notes.ideamans.com/${relativePath.replace(
+  const entryUrl = `https://today.ideamans.com/${relativePath.replace(
     '.md',
     '.html'
   )}`

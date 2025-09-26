@@ -8,7 +8,7 @@ function indexImageUrl(bgUrl: string, subTitle: string): string {
   const ogp = new URL('https://banners.ideamans.com/banners/type-a')
   ogp.searchParams.set('bgUrl', bgUrl)
 
-  ogp.searchParams.set('text0', `ideaman's Notes`)
+  ogp.searchParams.set('text0', `ideaman's Today`)
   ogp.searchParams.set('text0width', '60%')
 
   ogp.searchParams.set('text1', subTitle)
@@ -21,7 +21,7 @@ function articleImageUrl(bgUrl: string, title: string, meta: string): string {
   const ogp = new URL('https://banners.ideamans.com/banners/type-a')
   ogp.searchParams.set('bgUrl', bgUrl)
 
-  ogp.searchParams.set('text0', `ideaman's Notes`)
+  ogp.searchParams.set('text0', `ideaman's Today`)
   ogp.searchParams.set('text0width', '60%')
 
   ogp.searchParams.set('text1', title)
@@ -38,7 +38,7 @@ function articleImageUrl(bgUrl: string, title: string, meta: string): string {
 
 function articleTwitterImageUrl(slug: string): string {
   const image = new URL('https://alogorithm2.ideamans.com/v2/rect.png')
-  image.searchParams.set('seed', [slug, 'notes'].join('@'))
+  image.searchParams.set('seed', [slug, 'today'].join('@'))
   image.searchParams.set('width', '256')
   image.searchParams.set('height', '256')
   return image.href
@@ -46,7 +46,7 @@ function articleTwitterImageUrl(slug: string): string {
 
 function indexTwitterImageUrl(): string {
   const image = new URL('https://alogorithm2.ideamans.com/v2/rect.png')
-  image.searchParams.set('seed', 'notes')
+  image.searchParams.set('seed', 'today')
   image.searchParams.set('width', '256')
   image.searchParams.set('height', '256')
   return image.href
@@ -54,8 +54,8 @@ function indexTwitterImageUrl(): string {
 
 export default defineConfig({
   mpa: true,
-  title: `ideaman's Notes`,
-  description: 'アイデアマンズ株式会社の研究ノート',
+  title: `ideaman's Today`,
+  description: 'Webフィットネスの普及に向けた新しいWebの新常識',
   cleanUrls: false,
   ignoreDeadLinks: true,
   rewrites: {},
@@ -66,7 +66,7 @@ export default defineConfig({
     //   'meta',
     //   {
     //     name: 'twitter:image',
-    //     content: 'https://logo.ideamans.com/ogp.svg?width=800&phrase=notes'
+    //     content: 'https://logo.ideamans.com/ogp.svg?width=800&phrase=today'
     //   }
     // ],
     [
@@ -74,7 +74,7 @@ export default defineConfig({
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: '/notes.svg'
+        href: '/today.svg'
       }
     ],
     // [
@@ -117,7 +117,7 @@ gtag('config', 'G-YQBLSY0PKS');
     await genLLMs(config)
   },
   transformHead: ({ head, pageData }) => {
-    const ogpBgUrl = 'https://notes.ideamans.com/ogp-background.jpg'
+    const ogpBgUrl = 'https://today.ideamans.com/ogp-background.jpg'
 
     if (pageData.frontmatter?.index || !pageData.frontmatter?.title) {
       // インデックスページ

@@ -1,5 +1,5 @@
 ---
-title: ideaman's Notes
-subtext: アイデアマンズ株式会社の研究ノート
+title: ideaman's Today
+subtext: Webフィットネスの普及に向けた新しいWebの新常識
 index: true
 ---

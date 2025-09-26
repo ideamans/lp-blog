@@ -5,19 +5,19 @@ import Dayjs from 'dayjs'
 import { createContentLoader, type SiteConfig } from 'vitepress'
 import { authors } from '../authors.js'
 
-const baseUrl = `https://notes.ideamans.com`
+const baseUrl = `https://today.ideamans.com`
 
 export async function genFeed(config: SiteConfig) {
   const authorsMap = new Map(authors.map((author) => [author.username, author]))
 
   const feed = new Feed({
-    title: `ideaman's Notes`,
-    description: 'アイデアマンズ株式会社の研究ノート',
+    title: `ideaman's Today`,
+    description: 'Webフィットネスの普及に向けた新しいWebの新常識',
     id: baseUrl,
     link: baseUrl,
     language: 'ja',
-    image: 'https://alogorithm2.ideamans.com/v2/rect.svg?width=800&seed=notes',
-    favicon: `${baseUrl}/notes.svg`,
+    image: 'https://alogorithm2.ideamans.com/v2/rect.svg?width=800&seed=today',
+    favicon: `${baseUrl}/today.svg`,
     copyright: `Copyright (c) 2024- ideaman's Inc.`
   })
 
