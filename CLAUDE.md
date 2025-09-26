@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## プロジェクト概要
 
-ideaman's Notes - VitePress + Vue 3で構築されたテクニカルブログシステム
+ideaman's Today - VitePress + Vue 3で構築されたテクニカルブログシステム
 
 ## 開発コマンド
 
