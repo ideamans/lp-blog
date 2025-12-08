@@ -142,6 +142,7 @@ gtag('config', 'G-EYZJ8VYLJT');
       const title = pageData.frontmatter.title
       const id = pageData.frontmatter.id
       const date = Dayjs(pageData.frontmatter.date).format('YYYY/MM/DD')
+      const frontmatterImage = pageData.frontmatter.image
 
       // Twitter Card
       head.push([
@@ -151,13 +152,34 @@ gtag('config', 'G-EYZJ8VYLJT');
           content: title
         }
       ])
+
+      // OGP画像 - フロントマターにimageがあればそれを使用
+      let ogImage: string
+      let twitterImage: string
+
+      if (frontmatterImage) {
+        // 相対パスを絶対URLに変換
+        const relativePath = pageData.relativePath ?? ''
+        const dir = relativePath.replace(/[^/]+$/, '')
+        const imagePath = frontmatterImage.startsWith('./')
+          ? dir + frontmatterImage.slice(2)
+          : frontmatterImage.startsWith('/')
+            ? frontmatterImage.slice(1)
+            : dir + frontmatterImage
+        ogImage = `https://today.ideamans.com/${imagePath}`
+        twitterImage = ogImage
+      } else {
+        ogImage = articleImageUrl(ogpBgUrl, title, `${date} @${id}`)
+        twitterImage = articleTwitterImageUrl(
+          pageData.relativePath ?? pageData.filePath ?? ''
+        )
+      }
+
       head.push([
         'meta',
         {
           property: 'twitter:image',
-          content: articleTwitterImageUrl(
-            pageData.relativePath ?? pageData.filePath ?? ''
-          )
+          content: twitterImage
         }
       ])
 
@@ -166,7 +188,7 @@ gtag('config', 'G-EYZJ8VYLJT');
         'meta',
         {
           property: 'og:image',
-          content: articleImageUrl(ogpBgUrl, title, `${date} @${id}`)
+          content: ogImage
         }
       ])
     }

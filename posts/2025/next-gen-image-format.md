@@ -2,11 +2,10 @@
 id: miyanaga
 title: 画像最適化のベストプラクティスは次世代フォーマットの活用
 date: 2025-09-26
+image: ./next-gen-image-format.jpeg
 categories:
  - image-fitness
 ---
-
-![次世代画像フォーマットのイメージ](https://placehold.jp/4ECDC4/FFFFFF/800x400.png?text=Next-Gen%20Image%20Formats)
 
 ## 画像最適化の2つのアプローチ
 
@@ -18,8 +17,6 @@ categories:
 結論から言えば、今のベストプラクティスは間違いなく**次世代画像フォーマットの活用**です。
 
 ## なぜ次世代フォーマットなのか
-
-![圧縮効率の比較イメージ](https://placehold.jp/FF6B6B/FFFFFF/800x400.png?text=Compression%20Efficiency)
 
 従来フォーマットには限界があります。JPEGは1992年、PNGは1996年、GIFに至っては1987年に登場。つまり、**30〜40年前の技術**です。
 

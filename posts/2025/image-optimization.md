@@ -2,11 +2,10 @@
 id: miyanaga
 title: 画像最適化は表示高速化のためならず？ 今はAWSコスト削減の有効手段
 date: 2025-09-26
+image: ./image-optimization.jpeg
 categories:
  - image-fitness
 ---
-
-![画像最適化とクラウドコスト削減のイメージ](https://placehold.jp/4A90E2/FFFFFF/800x400.png?text=Image%20Optimization%20%26%20AWS%20Cost)
 
 ## 画像最適化の目的が変わった
 
@@ -17,8 +16,6 @@ categories:
 いいえ、実は今、画像最適化には別の重要な役割があるのです。
 
 ## AWSのデータ転送料金という落とし穴
-
-![AWSコストのイメージ](https://placehold.jp/FF6B6B/FFFFFF/800x400.png?text=AWS%20Data%20Transfer%20Costs)
 
 AWSをはじめとする海外クラウドサービスは、データ転送量に応じた従量課金制を採用しています。つまり、サイトから配信するデータ量が増えれば増えるほど、料金も上がる仕組みです。
 

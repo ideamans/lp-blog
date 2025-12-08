@@ -61,6 +61,14 @@ const relatedPosts = computed(() => {
 <template>
   <article class="max-w-4xl mx-auto">
     <header class="pt-6 pb-2 space-y-4">
+      <h1
+        class="text-3xl leading-9 font-bold text-gray-700 dark:text-gray-200 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-snug"
+      >
+        <span v-for="(segment, index) in titleSegments" :key="index">
+          <span class="whitespace-nowrap">{{ segment }}</span>
+        </span>
+      </h1>
+
       <!-- Author Info -->
       <div class="flex items-center space-x-4">
         <img
@@ -75,13 +83,13 @@ const relatedPosts = computed(() => {
         </div>
       </div>
 
-      <h1
-        class="text-3xl leading-9 font-bold text-gray-700 dark:text-gray-200 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-snug"
+      <!-- OGP Image -->
+      <img
+        v-if="data.image"
+        :src="data.image"
+        :alt="data.title"
+        class="w-full rounded-lg"
       >
-        <span v-for="(segment, index) in titleSegments" :key="index">
-          <span class="whitespace-nowrap">{{ segment }}</span>
-        </span>
-      </h1>
     </header>
 
     <div class="pb-16">
