@@ -14,7 +14,7 @@ const formattedDate = computed(() => {
   <dl>
     <dt class="sr-only">公開日:</dt>
     <dd
-      class="text-base leading-6 font-medium text-gray-500 dark:text-gray-400"
+      class="text-base leading-6 font-medium text-base-content/60"
     >
       <time :datetime="date">{{ formattedDate }}</time>
     </dd>

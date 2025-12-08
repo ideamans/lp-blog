@@ -62,7 +62,7 @@ const relatedPosts = computed(() => {
   <article class="max-w-4xl mx-auto">
     <header class="pt-6 pb-2 space-y-4">
       <h1
-        class="text-3xl leading-9 font-bold text-gray-700 dark:text-gray-200 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-snug"
+        class="text-3xl leading-9 font-bold text-base-content tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-snug"
       >
         <span v-for="(segment, index) in titleSegments" :key="index">
           <span class="whitespace-nowrap">{{ segment }}</span>
@@ -76,8 +76,8 @@ const relatedPosts = computed(() => {
           :alt="author.name"
           class="w-16 h-16 rounded-full"
         >
-        <div class="text-sm text-gray-600 dark:text-gray-400">
-          <div class="font-bold text-gray-900 dark:text-white">{{ author.name }}</div>
+        <div class="text-sm text-base-content/60">
+          <div class="font-bold text-base-content">{{ author.name }}</div>
           <div>{{ author.title }}</div>
           <div>{{ formatJapaneseDate(date) }}</div>
         </div>
@@ -88,22 +88,22 @@ const relatedPosts = computed(() => {
         v-if="data.image"
         :src="data.image"
         :alt="data.title"
-        class="w-full rounded-lg"
+        class="w-full rounded-box"
       >
     </header>
 
     <div class="pb-16">
-      <Content class="prose dark:prose-invert max-w-none pb-8 prose-gray prose-p:text-gray-800 dark:prose-p:text-gray-300 prose-strong:text-gray-900 prose-strong:font-bold prose-strong:bg-yellow-100 prose-strong:px-1 dark:prose-strong:bg-yellow-900 dark:prose-strong:text-yellow-100" />
+      <Content class="prose max-w-none pb-8 prose-base-content prose-p:text-base-content/80 prose-strong:text-secondary prose-strong:font-bold prose-strong:bg-secondary/10 prose-strong:px-1 prose-headings:text-base-content prose-a:text-primary hover:prose-a:text-primary/80" />
     </div>
 
     <!-- Related Articles -->
-    <section v-if="relatedPosts.length > 0" class="border-t border-gray-200 dark:border-slate-200/5 pt-8 pb-8">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">こちらもおすすめ</h2>
+    <section v-if="relatedPosts.length > 0" class="border-t border-base-300 pt-8 pb-8">
+      <h2 class="text-2xl font-bold text-base-content mb-6">こちらもおすすめ</h2>
       <div class="space-y-4">
-        <article v-for="post in relatedPosts" :key="post.url" class="border-l-4 border-gray-200 pl-4">
+        <article v-for="post in relatedPosts" :key="post.url" class="border-l-4 border-primary pl-4">
           <a :href="post.url" class="block hover:opacity-75 transition-opacity">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">{{ post.title }}</h3>
-            <div class="text-sm text-gray-500 dark:text-gray-400">
+            <h3 class="text-lg font-semibold text-base-content mb-1">{{ post.title }}</h3>
+            <div class="text-sm text-base-content/60">
               {{ formatJapaneseDate(post.date) }}
             </div>
           </a>

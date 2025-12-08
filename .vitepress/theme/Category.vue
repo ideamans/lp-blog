@@ -13,12 +13,12 @@ const posts = allPosts.filter((post) => {
 </script>
 
 <template>
-  <div class="divide-y divide-gray-200 dark:divide-slate-200/5">
+  <div class="divide-y divide-base-300">
     <div class="pt-6 pb-8 space-y-2 md:space-y-5">
       <h1
-        class="text-2xl leading-9 font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-3xl sm:leading-10 md:text-5xl md:leading-14"
+        class="text-2xl leading-9 font-extrabold text-base-content tracking-tight sm:text-3xl sm:leading-10 md:text-5xl md:leading-14"
       >
-        <small class="text-slate-500">カテゴリー</small> {{ category.name }}
+        <small class="text-base-content/50">カテゴリー</small> {{ category.name }}
       </h1>
       <MainCategoriesMenu />
     </div>
