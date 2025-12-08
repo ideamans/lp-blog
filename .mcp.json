@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+      "nanobanana": {
+        "command":
+  "/Users/miyanaga/dev/ideamans-today/mcps/nanobanana/nanobanana",
+        "env": {
+          "GEMINI_API_KEY": "your-api-key-here"
+        }
+      }
+    }
+  }
