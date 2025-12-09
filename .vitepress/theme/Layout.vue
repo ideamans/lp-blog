@@ -36,7 +36,8 @@ const category = computed(() => {
           />
           <span
             v-if="!frontmatter.index"
-            class="hidden md:inline text-base-content/60"
+            class="hidden md:inline"
+            style="color: rgb(85, 85, 85)"
             >Today</span
           >
         </a>
