@@ -1,8 +1,8 @@
 import Dayjs from 'dayjs'
-// import { defineConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import { genFeed } from './genFeed.js'
 import { genLLMs } from './genLLMs.js'
+import { copyFrontmatterImages } from './copyImages.js'
 
 function indexImageUrl(bgUrl: string, subTitle: string): string {
   const ogp = new URL('https://banners.ideamans.com/banners/type-a')
@@ -115,6 +115,7 @@ gtag('config', 'G-EYZJ8VYLJT');
   buildEnd: async (config) => {
     await genFeed(config)
     await genLLMs(config)
+    await copyFrontmatterImages(config)
   },
   transformHead: ({ head, pageData }) => {
     const ogpBgUrl = 'https://today.ideamans.com/ogp-background.jpg'

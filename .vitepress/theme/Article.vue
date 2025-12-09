@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData, useRoute } from 'vitepress'
+import { useData, useRoute, withBase } from 'vitepress'
 import { data as posts } from './posts.data.js'
 import { authors } from '../../authors'
 import { loadDefaultJapaneseParser } from 'budoux'
@@ -9,6 +9,23 @@ const { frontmatter: data } = useData()
 
 const route = useRoute()
 const parser = loadDefaultJapaneseParser()
+
+// Resolve relative image path to absolute path
+const resolvedImage = computed(() => {
+  const image = data.value.image
+  if (!image) return null
+
+  // Already absolute path or URL
+  if (image.startsWith('/') || image.startsWith('http')) {
+    return image
+  }
+
+  // Relative path (e.g., ./image.jpg)
+  // route.path is like /posts/2025/image-optimization.html
+  const dir = route.path.replace(/[^/]+$/, '') // /posts/2025/
+  const imagePath = image.startsWith('./') ? image.slice(2) : image
+  return withBase(dir + imagePath)
+})
 
 function findCurrentIndex() {
   return posts.findIndex((p) => p.url === route.path)
@@ -85,8 +102,8 @@ const relatedPosts = computed(() => {
 
       <!-- OGP Image -->
       <img
-        v-if="data.image"
-        :src="data.image"
+        v-if="resolvedImage"
+        :src="resolvedImage"
         :alt="data.title"
         class="w-full rounded-box"
       >
