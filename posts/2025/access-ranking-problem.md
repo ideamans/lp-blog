@@ -1,7 +1,7 @@
 ---
 id: miyanaga
 title: メディアサイトのアクセスランキング、その書き込み負荷問題を解決する
-date: 2025-10-22
+date: 2025-12-09
 image: ./access-ranking-problem.png
 categories:
  - web-architecture

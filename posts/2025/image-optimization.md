@@ -1,7 +1,7 @@
 ---
 id: miyanaga
 title: 画像最適化は表示高速化のためならず？ 今はAWSコスト削減の有効手段
-date: 2025-09-26
+date: 2025-12-09
 image: ./image-optimization.jpeg
 categories:
  - image-fitness

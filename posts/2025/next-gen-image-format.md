@@ -1,7 +1,7 @@
 ---
 id: miyanaga
 title: 画像最適化のベストプラクティスは次世代フォーマットの活用
-date: 2025-09-26
+date: 2025-12-09
 image: ./next-gen-image-format.jpeg
 categories:
  - image-fitness
