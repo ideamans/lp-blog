@@ -12,7 +12,7 @@ import (
 	"google.golang.org/genai"
 )
 
-const model = "gemini-2.0-flash-preview-image-generation"
+const model = "gemini-3-pro-image-preview"
 
 const systemInstruction = `ユーザーが与えた記事の要点をまとめたインフォグラフィックを、以下の仕様で1200x630ピクセルのJPG画像として生成してください。
 テーマや画像の仕様など、記事の内容と関係のないテキストは一切表示しないでください。
@@ -122,7 +122,13 @@ func handleGenerateBlogImage(ctx context.Context, req mcp.CallToolRequest) (*mcp
 	}
 
 	// Create Gemini client
-	client, err := genai.NewClient(ctx, nil)
+	apiKey := os.Getenv("GEMINI_API_KEY")
+	if apiKey == "" {
+		return mcp.NewToolResultError("GEMINI_API_KEY environment variable is not set"), nil
+	}
+	client, err := genai.NewClient(ctx, &genai.ClientConfig{
+		APIKey: apiKey,
+	})
 	if err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("failed to create Gemini client: %v", err)), nil
 	}
@@ -142,6 +148,9 @@ func handleGenerateBlogImage(ctx context.Context, req mcp.CallToolRequest) (*mcp
 		ResponseModalities: []string{
 			"IMAGE",
 			"TEXT",
+		},
+		ImageConfig: &genai.ImageConfig{
+			ImageSize: "1K",
 		},
 		SystemInstruction: &genai.Content{
 			Parts: []*genai.Part{
