@@ -52,3 +52,14 @@ Google Analyticsを使う際の主な注意点は以下の通りです:
 Google Analyticsの活用は、この書き込み負荷問題を根本から回避する方法です。大量のアクセスに耐えられるGoogleのインフラに負荷を任せ、自前のシステムは軽量な読み込み処理だけに専念できます。
 
 アクセスランキングを安定して提供し続けるために、ぜひGoogle Analyticsの活用を検討してみてください。
+
+## GA4 API連携を簡単に: Ranklet4
+
+GA4 APIを使った実装は、認証設定やAPI呼び出し、キャッシュ戦略など意外と手間がかかります。**Ranklet4**なら、GA4アカウントを連携するだけですぐにアクセスランキングを表示できます。基本機能は無料です。
+
+<ProductLink
+  code="ranklet4"
+  title="Ranklet4"
+  description="GA4連携でアクセスランキングを簡単表示。無料で使える人気記事ウィジェット。"
+  url="https://ranklet4.com/"
+/>

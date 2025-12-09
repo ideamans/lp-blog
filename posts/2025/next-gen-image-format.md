@@ -70,3 +70,14 @@ categories:
 ブラウザ対応率も96%を超え、実装方法も確立されている今、次世代画像フォーマットの活用は「検討すべき選択肢」ではなく「実行すべきベストプラクティス」になっています。
 
 あなたのサイトでも、まずは1枚の画像から次世代フォーマットを試してみてはいかがでしょうか。その圧縮効率の違いに、きっと驚くはずです。
+
+## WebP自動変換を簡単に: LightFile Proxy
+
+次世代フォーマットへの変換を自動化するなら**LightFile Proxy**がおすすめです。CloudFrontのオリジンとして設定するだけで、画像を自動的にWebP形式に変換して配信。プログラムやHTMLの変更不要で、約30分で導入できます。
+
+<ProductLink
+  code="lightfile-proxy"
+  title="LightFile Proxy"
+  description="CloudFront経由でWebP自動変換。設定変更だけで次世代フォーマット配信。"
+  url="https://www.lightfile-proxy.net/"
+/>

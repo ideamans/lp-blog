@@ -59,3 +59,28 @@ AWSをはじめとする海外クラウドサービスは、データ転送量�
 特にアクセス数が多いサイトほど、その効果は大きくなります。一度の最適化作業で、毎月確実にコストが削減され続ける。これが、クラウド時代の画像最適化の新しい価値です。
 
 あなたのサイトでも、まずは現在のAWS請求書でデータ転送料金を確認してみてください。その金額は、きっと画像最適化を実施する十分な理由になるはずです。
+
+## 画像最適化ソリューション: LightFileシリーズ
+
+弊社では画像最適化のソリューションを提供しており、現在多くの通販サイトでご利用いただいています。
+
+<ProductLink
+  code="lightfile-self"
+  title="LightFile Self"
+  description="小規模サイト向けの無料画像最適化サービス。会員登録不要ですぐに利用可能。"
+  url="https://self.lightfile.net/"
+/>
+
+<ProductLink
+  code="lightfile-next"
+  title="LightFile Next"
+  description="バッチ処理で既存サーバーの画像最適化を自動化。手間なく導入できます。"
+  url="https://next.lightfile.net/"
+/>
+
+<ProductLink
+  code="lightfile-proxy"
+  title="LightFile Proxy"
+  description="AWS CloudFront専用。WebP自動変換でさらに高効率な画像最適化を実現。"
+  url="https://www.lightfile-proxy.net/"
+/>

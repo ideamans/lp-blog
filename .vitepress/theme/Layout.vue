@@ -20,7 +20,7 @@ const category = computed(() => {
 </script>
 
 <template>
-  <div class="antialiased dark:bg-slate-900">
+  <div class="antialiased bg-base-100 text-base-content min-h-screen">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 xl:max-w-6xl xl:px-0">
       <nav class="flex justify-between items-center py-10 font-bold">
         <a
@@ -36,13 +36,14 @@ const category = computed(() => {
           />
           <span
             v-if="!frontmatter.index"
-            class="hidden md:inline text-gray-500 dark:text-gray-400"
+            class="hidden md:inline"
+            style="color: rgb(85, 85, 85)"
             >Today</span
           >
         </a>
-        <div class="text-sm text-gray-500 dark:text-white leading-5">
+        <div class="text-sm text-base-content/60 leading-5">
           <a
-            class="hover:text-gray-700 dark:hover:text-gray-200"
+            class="hover:text-primary transition-colors"
             href="https://www.ideamans.com/"
             target="_blank"
             rel="noopener"
@@ -57,11 +58,11 @@ const category = computed(() => {
       <NotFound v-else-if="page.isNotFound" />
       <Article v-else />
     </main>
-    <footer class="footer footer-center p-4">
+    <footer class="footer footer-center p-4 bg-neutral text-neutral-content mt-16">
       <aside>
         <p>
           Copyright © {{ Dayjs().year() }} - All right reserved by
-          <a href="https://www.ideamans.com/" class="link">ideaman's Inc.</a>
+          <a href="https://www.ideamans.com/" class="link link-secondary">ideaman's Inc.</a>
         </p>
       </aside>
     </footer>

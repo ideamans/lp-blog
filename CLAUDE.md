@@ -80,3 +80,11 @@ X_AI_POSTING_PROD=    # 本番環境フラグ（設定時のみ実投稿）
 ## PostCSS設定
 
 Tailwind CSSをVitePressで使用するために、`postcss.config.js`でプラグインチェーンを設定。VitePressのMarkdownコンテンツもTailwindのcontent対象に含める。
+
+# 記事の執筆
+
+@WRITING.md を参照のこと。
+
+# 弊社製品情報
+
+@projects 以下に情報を記載する。随時参照する。

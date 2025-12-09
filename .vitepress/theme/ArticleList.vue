@@ -17,7 +17,7 @@ const props = defineProps<{
         <article class="space-y-2">
           <Date :date="date" />
           <h2 class="text-xl leading-7 font-semibold tracking-tight">
-            <a class="text-gray-900 dark:text-white hover:text-gray-600" :href="url">{{
+            <a class="text-base-content hover:text-primary transition-colors" :href="url">{{
               title
             }}</a>
           </h2>

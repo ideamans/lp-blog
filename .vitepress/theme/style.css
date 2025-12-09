@@ -17,8 +17,9 @@ h1 {
 }
 
 :root {
-  --c-brand: #3eaf7c;
-  --c-brand-light: #4abf8a;
+  --c-brand: #00B3E6;
+  --c-brand-light: #33C4ED;
+  --c-accent: #FF8200;
 }
 
 nav img {
