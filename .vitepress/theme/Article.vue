@@ -76,7 +76,7 @@ const relatedPosts = computed(() => {
 </script>
 
 <template>
-  <article class="max-w-4xl mx-auto">
+  <article class="max-w-5xl mx-auto">
     <header class="pt-6 pb-2 space-y-4">
       <h1
         class="text-3xl leading-9 font-bold text-base-content tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-snug"

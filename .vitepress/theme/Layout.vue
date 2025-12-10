@@ -52,7 +52,7 @@ const category = computed(() => {
         </div>
       </nav>
     </div>
-    <main class="max-w-4xl mx-auto px-4 sm:px-6">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6">
       <Home v-if="frontmatter.index" />
       <Category v-else-if="category" :category="category" />
       <NotFound v-else-if="page.isNotFound" />
