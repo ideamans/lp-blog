@@ -1,6 +1,6 @@
 ---
 id: miyanaga
-title: サイトスピードを改善すると、なぜ売上が上がるのか？
+title: サイトスピードを改善すると売上が上がる理由
 date: 2025-12-15
 image: ./sitespeed-revenue-mechanism.jpg
 categories:
