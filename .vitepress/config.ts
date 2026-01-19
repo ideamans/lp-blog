@@ -77,32 +77,12 @@ export default defineConfig({
         href: '/today.svg'
       }
     ],
-    // [
-    //   'script',
-    //   {
-    //     src: 'https://cdn.usefathom.com/script.js',
-    //     'data-site': 'NYHGSGQV',
-    //     'data-spa': 'auto',
-    //     defer: ''
-    //   }
-    // ]
     [
       'script',
       {
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-YQBLSY0PKS',
+        src: 'https://tags.ideamans.com/scripts/today.js',
         async: '1'
       }
-    ],
-    [
-      'script',
-      {},
-      `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-EYZJ8VYLJT');
-`
     ],
     [
       'script',
