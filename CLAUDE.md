@@ -9,62 +9,70 @@ ideaman's Today - VitePress + Vue 3で構築されたテクニカルブログシ
 ## 開発コマンド
 
 ```bash
-# 開発サーバーの起動
-yarn dev
-# または
-npm run dev
-
-# プロダクションビルド
-yarn build
-# または
-npm run build
-
-# ビルド結果のプレビュー
-yarn serve
-# または
-npm run serve
-
-# X(Twitter)自動投稿エージェントの実行
-yarn x-ai-posting
-# または
-npm run x-ai-posting
+yarn dev          # 開発サーバーの起動（ブラウザ自動オープン）
+yarn build        # プロダクションビルド
+yarn serve        # ビルド結果のプレビュー
+yarn x-ai-posting # X(Twitter)自動投稿エージェントの実行
 ```
 
 ## アーキテクチャ
 
 ### 技術スタック
-- **VitePress 1.0** - 静的サイトジェネレーター
+- **VitePress 1.0** - 静的サイトジェネレーター（MPA モード）
 - **Vue 3** - UIフレームワーク（Composition API）
 - **Tailwind CSS 3** + **DaisyUI 4** - スタイリング
 - **TypeScript** - 型安全性
-- **PostCSS** - CSS処理
-- **Dayjs** - 日付処理
 
-### ディレクトリ構造
+### 主要ディレクトリ
 
-- `/.vitepress/` - VitePress設定とカスタマイズ
-  - `/config.ts` - サイト設定、OGP画像生成、GA設定
-  - `/theme/` - カスタムテーマ実装
-    - `Layout.vue` - メインレイアウト（ヘッダー、フッター、ルーティング）
-    - `Home.vue`, `Article.vue`, `Category.vue` - ページコンポーネント
-    - `style.css` - Tailwindベースのスタイル定義
-  - `/genFeed.ts` - RSS フィード生成（ビルド時）
-  - `/genLLMs.ts` - LLM用テキスト出力生成（ビルド時）
+- `/.vitepress/config.ts` - サイト設定、OGP画像生成、ビルドフック
+- `/.vitepress/theme/` - カスタムテーマ（Layout.vue がルーティング制御）
+- `/.vitepress/theme/*.data.ts` - VitePressデータローダー（posts, categories, authors）
+- `/posts/YYYY/*.md` - ブログ記事（年別）
+- `/products/` - 製品情報（記事末尾のProductLink用）
+- `/frameworks/` - 記事執筆フレームワーク（6種類のライティングスタイル）
+- `/agents/x-ai-posting.ts` - Gemini APIによるX自動投稿
 
-- `/posts/` - ブログ記事（年別ディレクトリ構造）
-  - `/YYYY/*.md` - Markdown記事ファイル
+### ビルドプロセス
 
-- `/agents/` - 自動化スクリプト
-  - `x-ai-posting.ts` - Gemini APIを使った記事のX自動投稿
+VitePressの`buildEnd`フックで以下を実行:
+1. `genFeed.ts` → `feed.rss` 生成
+2. `genLLMs.ts` → `llms-full.txt` 生成
+3. `copyFrontmatterImages.ts` → frontmatterのimage画像をコピー
 
-- `/categories/` - カテゴリページ
+OGP画像は`https://banners.ideamans.com`で動的生成、またはfrontmatterのimageフィールドで指定。
 
-## ビルドプロセス
+## 記事のfrontmatter
 
-1. VitePressがMarkdown記事を静的HTMLに変換
-2. `genFeed.ts`がRSSフィード（`feed.rss`）を生成
-3. `genLLMs.ts`がLLM用テキストファイル（`llms-full.txt`）を生成
-4. OGP画像は動的生成（`https://banners.ideamans.com`サービス使用）
+```yaml
+---
+id: miyanaga                    # 著者ID（必須）
+title: 記事タイトル              # 30文字以内推奨（必須）
+date: 2025-01-24                # 日付（必須）
+image: ./記事slug.jpg           # OGP画像（任意、nanobanana MCPで生成）
+categories:                     # カテゴリ（任意）
+  - sitespeed
+  - image-fitness
+---
+```
+
+## 記事の執筆
+
+@WRITING.md を参照のこと。
+
+### ProductLinkコンポーネント
+
+記事末尾で製品紹介に使用:
+```vue
+<ProductLink
+  code="製品コード"
+  title="製品名"
+  description="説明文"
+  url="https://example.com/"
+/>
+```
+
+製品情報は `/products/*.md` を参照し、適切な製品を選択。
 
 ## 環境変数（.env）
 
@@ -77,14 +85,6 @@ TWITTER_ACCESS_SECRET=# Twitter API Access Secret
 X_AI_POSTING_PROD=    # 本番環境フラグ（設定時のみ実投稿）
 ```
 
-## PostCSS設定
+## 弊社製品情報
 
-Tailwind CSSをVitePressで使用するために、`postcss.config.js`でプラグインチェーンを設定。VitePressのMarkdownコンテンツもTailwindのcontent対象に含める。
-
-# 記事の執筆
-
-@WRITING.md を参照のこと。
-
-# 弊社製品情報
-
-@projects 以下に情報を記載する。随時参照する。
+@products 以下に情報を記載。記事との関連性に応じて参照。
