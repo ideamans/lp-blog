@@ -30,13 +30,13 @@ const category = computed(() => {
         >
           <img
             class="inline-block mr-2"
-            style="width: 196px; height: 43px"
+            style="width: 256px; height: 54px"
             alt="logo"
-            src="/logo.svg"
+            src="/today-inline.svg"
           />
           <span
             v-if="!frontmatter.index"
-            class="hidden md:inline"
+            class="hidden md:inline text-4xl"
             style="color: rgb(85, 85, 85)"
             >Today</span
           >
