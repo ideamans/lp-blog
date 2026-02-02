@@ -50,13 +50,13 @@ categories:
 
 たとえば、トヨタ自動車（toyota.jp）のレポートを見てみましょう。
 
-![トヨタ自動車のLCP推移（過去5年）](./sitespeed-perception-gap-trend.png)
+![トヨタ自動車のLCP推移（過去5年）](/posts/2026/sitespeed-perception-gap-trend.png)
 
 LCP（ページのメインコンテンツが表示されるまでの時間）の5年間の推移を見ると、トヨタ自動車のサイトは長期的にスピードが改善傾向にあることがわかります。自社だけを見れば「順調に改善できている」と感じるかもしれません。
 
 しかし、競合比較のグラフを見ると、景色が一変します。
 
-![自動車メーカーのLCP競合比較](./sitespeed-perception-gap-compare.png)
+![自動車メーカーのLCP競合比較](/posts/2026/sitespeed-perception-gap-compare.png)
 
 注目すべきはSUBARUです。2022年頃までは各社とも似たような水準でしたが、SUBARUはそこからトヨタを上回るペースで改善を続け、この数年で一気に差を広げて**業界最速**に上り詰めています。現在、トヨタとSUBARUの間にはモバイルで**約1秒の差**があります。
 

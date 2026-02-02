@@ -36,7 +36,7 @@ categories:
 
 Speed is Moneyで計測したあるECサイトのデータをご覧ください。
 
-![LCPとCVRの関係](./sitespeed-motivation-gap-lcp-cvr.png)
+![LCPとCVRの関係](/posts/2026/sitespeed-motivation-gap-lcp-cvr.png)
 
 横軸はLCP（ページのメインコンテンツが表示されるまでの時間）、縦軸はCVR（コンバージョン率）です。LCPが良好なユーザーほどCVRが高く、LCPが悪化するにつれてCVRが急激に低下しています。**サイトの表示が遅いユーザーほど、購入に至らない**という関係が、データとしてくっきり表れています。
 
@@ -46,7 +46,7 @@ Speed is Moneyで計測したあるECサイトのデータをご覧ください�
 
 Speed is Moneyでは、協力いただいた14の通販サイトのデータから、LCPを5%・10%・15%改善した場合のCVR改善率をシミュレーションしました。
 
-![14サイトのLCP改善率とCVR改善率の関係](./sitespeed-motivation-gap-14sites.png)
+![14サイトのLCP改善率とCVR改善率の関係](/posts/2026/sitespeed-motivation-gap-14sites.png)
 
 結果を見ると、**10%のスピード改善で、CVR改善率の中央値は約9%**。ただし、サイトによるばらつきは大きく、5%程度にとどまるサイトもあれば、20%以上の伸びが見込まれるサイトもあります。
 
