@@ -17,13 +17,19 @@ const props = defineProps<{
 
 const route = useRoute()
 
-// UTMパラメータ付きURLを生成
+// 記事のslugを取得（/posts/2025/slug.html → slug）
+const getSlug = (path: string): string => {
+  const match = path.match(/\/([^/]+)\.html$/)
+  return match ? match[1] : 'unknown'
+}
+
+// UTMパラメータ付きURLを生成（cross-link-manager仕様準拠）
 const trackedUrl = computed(() => {
   const url = new URL(props.url)
-  url.searchParams.set('utm_source', 'ideamans-today')
-  url.searchParams.set('utm_medium', 'blog')
-  url.searchParams.set('utm_campaign', 'product_link')
-  url.searchParams.set('utm_content', route.path)
+  url.searchParams.set('utm_source', 'today.ideamans.com')
+  url.searchParams.set('utm_medium', 'owned_media')
+  url.searchParams.set('utm_campaign', 'regular')
+  url.searchParams.set('utm_content', getSlug(route.path))
   return url.toString()
 })
 

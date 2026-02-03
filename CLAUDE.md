@@ -136,7 +136,7 @@ categories:                     # カテゴリ（任意、categories.tsで定義
 - `url`: 製品の公式URL
 
 **自動付与される機能:**
-- UTMパラメータ（utm_source=ideamans-today, utm_medium=blog, utm_campaign=product_link）
+- UTMパラメータ（utm_source=today.ideamans.com, utm_medium=owned_media, utm_campaign=regular, utm_content=記事slug）
 - GA4コンバージョンイベント（product_link_click）
 - アイコン画像（`https://alogorithm2.ideamans.com/v2/icon.svg?seed={code}`）
 
