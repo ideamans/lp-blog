@@ -73,7 +73,7 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'twitter:site', content: '@ideamans' }],
-    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     // [
     //   'meta',
     //   {
