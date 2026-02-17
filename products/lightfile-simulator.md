@@ -1,4 +1,4 @@
-# LightFile Simulator
+# 画像最適化無料診断
 
 ## 紹介ルール
 
