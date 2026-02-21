@@ -12,6 +12,11 @@ const categories: Category[] = [
   {
     basename: 'image-fitness',
     name: '画像最適化'
+  },
+
+  {
+    basename: 'ai-utilization',
+    name: 'AI活用'
   }
 ]
 
