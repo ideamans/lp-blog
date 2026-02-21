@@ -2,6 +2,7 @@
 id: miyanaga
 title: AI時代の開発マインドを変える鍵は定額制
 date: 2026-02-17
+image: ./flat-rate-changes-ai-mindset.jpg
 categories:
   - ai-utilization
 ---
