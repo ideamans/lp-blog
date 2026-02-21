@@ -1,7 +1,7 @@
 ---
 id: miyanaga
 title: 開発AIエージェントの能力を引き出すLLMの原理への理解
-date: 2026-02-17
+date: 2026-02-21
 image: ./ai-output-not-gacha.jpg
 categories:
   - ai-utilization
