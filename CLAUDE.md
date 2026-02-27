@@ -68,7 +68,7 @@ posts/{YYYY}/{slug}.md
 id: miyanaga                    # 著者ID（必須、authors.tsで定義）
 title: 記事タイトル              # 30文字以内推奨（必須）
 date: 2025-01-24                # 日付（必須、dateコマンドで正確に取得）
-image: ./記事slug.jpg           # OGP画像（任意、nanobanana MCPで生成）
+image: ./記事slug.jpg           # OGP画像（任意、/ogp-image スキルで生成）
 categories:                     # カテゴリ（任意、categories.tsで定義）
   - sitespeed
   - image-fitness
@@ -158,8 +158,8 @@ categories:                     # カテゴリ（任意、categories.tsで定義
 
 記事執筆時は不要。ユーザーの指示に応じて:
 
-1. **nanobanana MCPサーバー**を使用
-2. 記事全文（マークダウン）を渡す
+1. **`/ogp-image` スキル**を使用（例: `/ogp-image posts/2026/slug.md`）
+2. 記事全文（マークダウン）を渡してGemini APIで生成
 3. JPEG形式、記事ファイルと同名のbasename + `.jpg` で出力
 4. 出力先: 記事ファイルと同じディレクトリ（例: `posts/2025/記事slug.jpg`）
 
