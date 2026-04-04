@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: サードパーティタグという見えない重さ
+description: サイト本体を改善してもスピードが上がらない原因の多くは、GTMに積み重なったサードパーティタグにある。画面に何も表示しないJavaScriptがなぜ体感速度を大きく損なうのか、そのメカニズムと対処法を解説する。
 date: 2026-02-03
 image: ./hidden-weight-of-third-party-tags.jpg
 categories:

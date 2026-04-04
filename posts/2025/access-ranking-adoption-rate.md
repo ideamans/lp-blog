@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: ニュースサイトの標準装備？ アクセスランキング採用率は73%
+description: 220サイト調査でニュースメディアの73%がアクセスランキングを導入済み。実装が難しいとされる機能も、GA4のデータを活用すれば開発コストをかけずに実現できる方法を紹介します。
 date: 2025-12-09
 image: ./access-ranking-adoption-rate.jpg
 categories:

@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: サイトスピード改善の目標はどう立てればよいか
+description: 「どこまでやるか」の判断ができないのはスピード改善による見返りが見えないからだ。自社サイトのデータでスピードと収益の関係を可視化し、10%改善でCVRが約9%向上するというシミュレーションで目標設定の根拠を作る方法を解説する。
 date: 2026-01-31
 image: ./sitespeed-motivation-gap.jpg
 categories:

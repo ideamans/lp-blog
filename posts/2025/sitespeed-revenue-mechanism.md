@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: サイトスピードを改善すると売上が上がる理由
+description: サイトが速くなっても購買意欲は変わらない。では、なぜ高速化で売上が上がるのか。LCPの悪化でコンバージョン率が10分の1に落ちるデータを示しながら、「機会損失を取り戻す」というメカニズムを解説します。
 date: 2025-12-15
 image: ./sitespeed-revenue-mechanism.jpg
 categories:

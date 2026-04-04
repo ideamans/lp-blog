@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 画像最適化は表示高速化のためならず？ 今はAWSコスト削減の有効手段
+description: 5G普及でページ高速化の恩恵が薄れた今、画像最適化の価値は「AWSのデータ転送料金削減」へとシフトしています。月間100万PVサイトで年間30万円削減できる仕組みを具体的に解説します。
 date: 2025-12-09
 image: ./image-optimization.jpeg
 categories:

@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 円安時代のAWSコスト削減。画像軽量化が最も手堅い意外な理由
+description: AWSコストの大半を占めるデータ転送料金。その60〜70%が画像ファイルという事実から、画像軽量化が最も保守コストが低く確実な円安対策である理由と、具体的な削減効果を解説します。
 date: 2025-12-09
 image: ./aws-cost-reduction-image-optimization.jpg
 categories:

@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: メディアサイトのアクセスランキング、その書き込み負荷問題を解決する
+description: アクセスランキング機能がサーバーダウンの原因になる理由とは。CDNで防げない「書き込み負荷」の問題構造を解説し、Google Analyticsのデータ活用という現実的な解決策を提示します。
 date: 2025-12-09
 image: ./access-ranking-problem.png
 categories:

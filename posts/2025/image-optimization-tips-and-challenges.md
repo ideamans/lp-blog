@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 画像最適化の3つのコツと、大きな効果を出す難しさ
+description: メタデータ整理・可逆圧縮・非可逆圧縮という3つのアプローチを解説。安全な方法は効果が小さく、大きな効果を出すほど品質判断が必要になる画像最適化のジレンマと、自動化による解決策を紹介します。
 date: 2025-12-10
 image: ./image-optimization-tips-and-challenges.jpeg
 categories:

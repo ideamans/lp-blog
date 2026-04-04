@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: AI時代の開発マインドを変える鍵は定額制
+description: Claude Codeを従量課金から定額制に切り替えた瞬間、使い方のマインドが180度変わった。定額制が試行回数を増やし、失敗から学ぶリーン開発を加速させる仕組みと、その逆張りの本質的な意味を語る。
 date: 2026-02-21
 image: ./flat-rate-changes-ai-mindset.jpg
 categories:

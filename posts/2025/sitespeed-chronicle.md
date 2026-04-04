@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: サイトスピードへのモヤモヤ、無料ツールで客観視してみませんか
+description: 「なんか遅くなった気がする」という体感は当てにならない。GoogleのCrUXデータを使えば、実際のユーザー体験に基づく客観的なサイトスピードの評価、5年間の推移、競合比較が無料で確認できます。
 date: 2025-12-10
 image: ./sitespeed-chronicle.jpg
 categories:

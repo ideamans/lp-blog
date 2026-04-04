@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 通販サイトのスピード10%改善で売上はいくら上がるか
+description: 14の通販サイトのデータから導いた答えは「10%のスピード改善で約9%の売上上昇」。サイトごとに効果が異なる理由と、年間売上1億円のECサイトで900万円増収を試算する考え方を解説します。
 date: 2025-12-15
 image: ./sitespeed-sales-estimation.jpg
 categories:

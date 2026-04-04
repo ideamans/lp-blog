@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 次世代画像変換とロングテールのジレンマ
+description: 大規模ECサイトでのWebP変換は「いつ変換するか」が重要課題。オンデマンド変換がロングテール商品のユーザー体験を犠牲にする問題を解説し、非同期変換という解決策を紹介します。
 date: 2025-12-09
 image: ./async-image-conversion.jpg
 categories:

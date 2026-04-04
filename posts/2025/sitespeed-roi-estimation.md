@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: サイトスピード改善による収益増を事前に見積もる方法
+description: 「サイトを速くすると売上が上がる」は感覚論で終わりがち。実際のユーザーの表示速度とコンバージョンを紐づけて分析することで、高速化の投資対効果を事前に数字で示す方法を解説します。
 date: 2025-12-15
 image: ./sitespeed-roi-estimation.jpg
 categories:

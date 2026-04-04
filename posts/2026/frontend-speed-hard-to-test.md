@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: ページスピード改善の仮説検証が難しい理由
+description: フロントエンドのスピード改善はリソースが相互に絡み合い、デプロイなしに部分検証できない。そのリードタイムの長さが仮説検証サイクルを妨げる構造的な問題と、ブラウザ通信の仮想化による解決策を解説する。
 date: 2026-02-03
 image: ./frontend-speed-hard-to-test.jpg
 categories:

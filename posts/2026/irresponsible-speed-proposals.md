@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 無責任なページスピード改善提案にご注意
+description: PageSpeed Insightsの丸写し・結果へのコミットなし・実装レベルの具体性なし。外部から受け取るスピード改善提案の3つの落とし穴と、依頼前に確認すべき質問を解説する。理論と成果は別物だ。
 date: 2026-01-26
 image: ./irresponsible-speed-proposals.jpg
 categories:

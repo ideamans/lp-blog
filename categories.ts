@@ -17,6 +17,11 @@ const categories: Category[] = [
   {
     basename: 'ai-utilization',
     name: 'AI活用'
+  },
+
+  {
+    basename: 'web-architecture',
+    name: 'Web設計・構成研究'
   }
 ]
 

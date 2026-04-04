@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 画像最適化のやった・やらない問題を解決するエビデンスの出し方
+description: 画像最適化は見た目では判断しにくく、「本当にやったの？」という疑念が生まれやすい作業。最適化の証拠をExcelレポートで可視化し、クライアントや上司への説明を数字で裏付ける方法を紹介します。
 date: 2025-12-09
 image: ./image-optimization-evidence.jpg
 categories:

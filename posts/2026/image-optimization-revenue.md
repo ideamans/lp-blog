@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 「画像を軽くすれば売上は上がる」は本当か？
+description: 「画像最適化＝高速化の切り札」という常識はもう古い。今のWebを遅くする主犯はJavaScriptだ。ただし画像量の多いECサイトでは「速い」を「爆速」に押し上げる効果があり、CVRへのインパクトは想像以上に大きい。
 date: 2026-02-05
 image: ./image-optimization-revenue.jpg
 categories:

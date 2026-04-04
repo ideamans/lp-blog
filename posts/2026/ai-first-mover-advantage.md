@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: AI時代のレッドオーシャンにみんな飛び込みたがっている
+description: AI活用で先行者利益を狙う多くの企業が、実は同じ方向に向かうレッドオーシャンに突き進んでいる。フォードの逆張り戦略とDXの失敗から、AIに人間を合わせるという真のブルーオーシャン戦略を考える。
 date: 2026-03-01
 image: ./ai-first-mover-advantage.jpg
 categories:

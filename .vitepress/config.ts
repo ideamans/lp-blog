@@ -148,7 +148,8 @@ export default defineConfig({
     if (pageData.frontmatter?.index || !pageData.frontmatter?.title) {
       // インデックスページ
       const subTitle = pageData.frontmatter.subtext
-      const description = pageData.frontmatter.subtext || 'Webフィットネスの普及に向けた新しいWebの新常識'
+      const description =
+        pageData.frontmatter.description || pageData.frontmatter.subtext || 'Webフィットネスの普及に向けた新しいWebの新常識'
 
       head.push(['meta', { property: 'og:type', content: 'website' }])
       head.push(['meta', { property: 'og:description', content: description }])

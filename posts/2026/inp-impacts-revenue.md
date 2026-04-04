@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 「もっさり感」を表すINPと14サイトに共通する売上との関係
+description: Core Web VitalsのINPはサイト操作時の「もっさり感」を数値化する指標だ。通販14サイトの実データ分析により、INPが50ミリ秒を超えるとCVRが全体平均を下回る傾向と、10%改善でCVRが3〜6%向上する関係が明らかになった。
 date: 2026-02-27
 image: ./inp-impacts-revenue.jpg
 categories:

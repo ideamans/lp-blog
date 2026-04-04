@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 画像最適化のベストプラクティスは次世代フォーマットの活用
+description: 30〜40年前の技術であるJPEG・PNGはすでに限界。WebPやAVIFなら同じ画質でファイルサイズを半分以下にできます。次世代画像フォーマットへの移行が「今すぐ実行すべき標準」である理由を解説します。
 date: 2025-12-09
 image: ./next-gen-image-format.jpeg
 categories:

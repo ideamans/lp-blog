@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: PageSpeed Insightsのスコアを目標にしてはいけない理由
+description: PageSpeed Insightsのスコアはグローバル基準のシミュレーションで、商用サイトでは高スコアが現実的でない場合も。CrUXの実ユーザーデータを活用した競合比較による現実的な目標設定の方法を解説します。
 date: 2025-12-10
 image: ./pagespeed-insights-goal-setting.jpg
 categories:

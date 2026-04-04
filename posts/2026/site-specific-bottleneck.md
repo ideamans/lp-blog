@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 一般論では見つからないページスピードのボトルネック
+description: セオリー通りの対策を全部やってもサイトが速くならないのは、一般論では届かないサイト固有のボトルネックが存在するからだ。パフォーマンスタイムラインを使った外科手術的アプローチで、CSSやJavaScriptの真の問題を特定する方法を解説する。
 date: 2026-02-03
 image: ./site-specific-bottleneck.jpg
 categories:

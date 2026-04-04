@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 開発AIエージェントの能力を引き出すLLMの原理への理解
+description: AIの出力はガチャではなく、フィードバックを積み重ねるほど改善されるプロセスだ。LLMの仕組みを理解し、一度の失望で見切りをつけるバイアスを乗り越える方法を解説する。
 date: 2026-02-21
 image: ./ai-output-not-gacha.jpg
 categories:

@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: サイトスピードの危機感が社内で共感されない理由
+description: 「サイトが遅い」と訴えても共感されないのは、スピードが主観であり立場によって評価が歪むからだ。過去との比較と競合との相対比較という2つの客観データを示すことで、チームの問題意識を揃える方法を解説する。
 date: 2026-01-31
 image: ./sitespeed-perception-gap.jpg
 categories:

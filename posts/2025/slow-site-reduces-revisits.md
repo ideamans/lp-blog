@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 通販サイトのスピードと再訪問率のリアルな関係
+description: LCPが悪いユーザーの再訪問率はわずか2%、良好なユーザーは55%。14サイトのデータで普遍的に確認されたこの事実は、表示の遅さがリピーター獲得とLTV最大化を静かに蝕んでいることを示しています。
 date: 2025-12-16
 image: ./slow-site-reduces-revisits.jpg
 categories:

@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: 開発AIエージェントの10倍速を宝の持ち腐れにしない戦略
+description: AIエージェントの実装10倍速を開発全体の高速化だけに使うのはもったいない。意思決定の質向上・使い捨てライブラリの活用・E2Eテストの実装など、スピードを品質に変えるリソース分配戦略を解説する。
 date: 2026-02-21
 image: ./disposable-programs-era.jpg
 categories:

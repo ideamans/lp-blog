@@ -1,6 +1,7 @@
 ---
 id: miyanaga
 title: PageSpeed Insightsの指摘に対応しても速くならない理由
+description: PageSpeed InsightsはグローバルスタンダードなWeb環境を前提とした診断ツールだ。高速回線・高性能端末が普及した日本では、そのアドバイスの効果は限定的になりやすい。サイト固有のボトルネックを見つける方法を解説する。
 date: 2026-02-03
 image: ./psi-advice-not-effective-in-japan.jpg
 categories:
