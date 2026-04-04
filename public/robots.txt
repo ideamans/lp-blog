@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://today.ideamans.com/sitemap.xml

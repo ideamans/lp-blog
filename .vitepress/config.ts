@@ -55,11 +55,28 @@ function indexTwitterImageUrl(): string {
 
 export default defineConfig({
   mpa: true,
+  lang: 'ja',
   title: `ideaman's Today`,
   description: 'Webフィットネスの普及に向けた新しいWebの新常識',
   cleanUrls: false,
   ignoreDeadLinks: true,
+  srcExclude: ['frameworks/**', 'products/**', 'policy/**', 'CLAUDE.md', 'WRITING.md', 'ideas.md'],
   rewrites: {},
+  sitemap: {
+    hostname: 'https://today.ideamans.com',
+    transformItems: (items) => {
+      // 記事とトップページ、カテゴリページのみsitemapに含める
+      return items.filter((item) => {
+        const url = item.url
+        return (
+          url === '' ||
+          url === 'index.html' ||
+          url.startsWith('posts/') ||
+          url.startsWith('categories/')
+        )
+      })
+    }
+  },
   markdown: {
     config: (md) => {
       md.use(crosslinkPlugin, {
@@ -111,11 +128,30 @@ export default defineConfig({
   },
   transformHead: ({ head, pageData }) => {
     const ogpBgUrl = 'https://today.ideamans.com/ogp-background.jpg'
+    const siteUrl = 'https://today.ideamans.com'
+
+    // ページURLの構築
+    const relativePath = pageData.relativePath ?? ''
+    const pagePath = relativePath.replace(/\.md$/, '.html').replace(/index\.html$/, '')
+    const pageUrl = `${siteUrl}/${pagePath}`
+
+    // canonical URL
+    head.push(['link', { rel: 'canonical', href: pageUrl }])
+
+    // og:url
+    head.push(['meta', { property: 'og:url', content: pageUrl }])
+
+    // og:title（全ページ共通）
+    const pageTitle = pageData.frontmatter?.title || `ideaman's Today`
+    head.push(['meta', { property: 'og:title', content: pageTitle }])
 
     if (pageData.frontmatter?.index || !pageData.frontmatter?.title) {
       // インデックスページ
       const subTitle = pageData.frontmatter.subtext
+      const description = pageData.frontmatter.subtext || 'Webフィットネスの普及に向けた新しいWebの新常識'
 
+      head.push(['meta', { property: 'og:type', content: 'website' }])
+      head.push(['meta', { property: 'og:description', content: description }])
       head.push([
         'meta',
         {
@@ -136,6 +172,13 @@ export default defineConfig({
       const id = pageData.frontmatter.id
       const date = Dayjs(pageData.frontmatter.date).format('YYYY/MM/DD')
       const frontmatterImage = pageData.frontmatter.image
+      const description = pageData.frontmatter.description || pageData.description || ''
+
+      head.push(['meta', { property: 'og:type', content: 'article' }])
+
+      if (description) {
+        head.push(['meta', { property: 'og:description', content: description }])
+      }
 
       // Twitter Card
       head.push([
@@ -152,14 +195,13 @@ export default defineConfig({
 
       if (frontmatterImage) {
         // 相対パスを絶対URLに変換
-        const relativePath = pageData.relativePath ?? ''
         const dir = relativePath.replace(/[^/]+$/, '')
         const imagePath = frontmatterImage.startsWith('./')
           ? dir + frontmatterImage.slice(2)
           : frontmatterImage.startsWith('/')
             ? frontmatterImage.slice(1)
             : dir + frontmatterImage
-        ogImage = `https://today.ideamans.com/${imagePath}`
+        ogImage = `${siteUrl}/${imagePath}`
         twitterImage = ogImage
       } else {
         ogImage = articleImageUrl(ogpBgUrl, title, `${date} @${id}`)
@@ -183,6 +225,40 @@ export default defineConfig({
           property: 'og:image',
           content: ogImage
         }
+      ])
+
+      // 構造化データ (JSON-LD) - Article
+      const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        datePublished: Dayjs(pageData.frontmatter.date).format('YYYY-MM-DD'),
+        author: {
+          '@type': 'Person',
+          name: '宮永 邦彦',
+          url: 'https://www.ideamans.com/'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'アイデアマンズ株式会社',
+          url: 'https://www.ideamans.com/',
+          logo: {
+            '@type': 'ImageObject',
+            url: `${siteUrl}/today.svg`
+          }
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': pageUrl
+        },
+        ...(ogImage ? { image: ogImage } : {}),
+        ...(description ? { description } : {})
+      }
+
+      head.push([
+        'script',
+        { type: 'application/ld+json' },
+        JSON.stringify(jsonLd)
       ])
     }
   },
