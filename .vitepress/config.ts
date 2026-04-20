@@ -4,6 +4,9 @@ import { genFeed } from './genFeed.js'
 import { genLLMs } from './genLLMs.js'
 import { copyFrontmatterImages } from './copyImages.js'
 import { crosslinkPlugin } from './crosslink-plugin.js'
+import { categories as categoryList } from '../categories.js'
+
+const categoryNameByBasename = new Map(categoryList.map((c) => [c.basename, c.name]))
 
 function indexImageUrl(bgUrl: string, subTitle: string): string {
   const ogp = new URL('https://banners.ideamans.com/banners/type-a')
@@ -260,6 +263,57 @@ export default defineConfig({
         'script',
         { type: 'application/ld+json' },
         JSON.stringify(jsonLd)
+      ])
+
+      // 構造化データ (JSON-LD) - BreadcrumbList
+      // ホーム > (カテゴリ) > 記事タイトル
+      const firstCatBasename = Array.isArray(pageData.frontmatter.categories)
+        ? pageData.frontmatter.categories[0]
+        : undefined
+      const firstCatName = firstCatBasename
+        ? categoryNameByBasename.get(firstCatBasename)
+        : undefined
+
+      const breadcrumbItems: Array<{
+        '@type': 'ListItem'
+        position: number
+        name: string
+        item: string
+      }> = [
+        { '@type': 'ListItem', position: 1, name: 'ホーム', item: `${siteUrl}/` }
+      ]
+      if (firstCatBasename && firstCatName) {
+        breadcrumbItems.push({
+          '@type': 'ListItem',
+          position: 2,
+          name: firstCatName,
+          item: `${siteUrl}/categories/${firstCatBasename}.html`
+        })
+        breadcrumbItems.push({
+          '@type': 'ListItem',
+          position: 3,
+          name: title,
+          item: pageUrl
+        })
+      } else {
+        breadcrumbItems.push({
+          '@type': 'ListItem',
+          position: 2,
+          name: title,
+          item: pageUrl
+        })
+      }
+
+      const breadcrumbLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbItems
+      }
+
+      head.push([
+        'script',
+        { type: 'application/ld+json' },
+        JSON.stringify(breadcrumbLd)
       ])
     }
   },

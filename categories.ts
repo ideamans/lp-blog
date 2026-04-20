@@ -10,6 +10,11 @@ const categories: Category[] = [
   },
 
   {
+    basename: 'core-web-vitals',
+    name: 'Core Web Vitals'
+  },
+
+  {
     basename: 'image-fitness',
     name: '画像最適化'
   },
