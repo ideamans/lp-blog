@@ -78,11 +78,11 @@ CrUXデータで競合ターゲットを決めた後、「以前の自分のサ�
 
 目標設定と測定ツールを使い分けることで、途方もない目標に挫折することなく、着実な改善を続けていけます。
 
-Chrome User Experience Report（CrUX）データを手軽に閲覧できるツールとして、弊社が提供する「サイトスピード クロニクル」をお勧めします。URLを入力するだけで、競合サイトとの比較や5年間の推移を無料で確認できます。
+Chrome User Experience Report（CrUX）データを手軽に閲覧できるツールとして、弊社が提供する「サイトスピード 振り返り・競合比較」をお勧めします。URLを入力するだけで、競合サイトとの比較や5年間の推移を無料で確認できます。
 
 <ProductLink
   code="sitespeed-chronicle"
-  title="サイトスピード クロニクル"
+  title="サイトスピード 振り返り・競合比較"
   description="CrUXデータを活用した無料のCore Web Vitals比較ツール。競合との実力差を把握し、現実的な目標設定ができます。"
   url="https://chronicle.sitespeed.info/"
 />
