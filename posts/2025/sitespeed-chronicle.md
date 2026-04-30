@@ -38,7 +38,7 @@ CrUXは、GoogleがChromeブラウザを通じて世界中のユーザーから�
   code="sitespeed-chronicle"
   title="サイトスピード 振り返り・競合比較"
   description="CrUXデータを活用した無料のCore Web Vitals比較ツール。5年間の推移と競合比較が可能。"
-  url="https://chronicle.sitespeed.info/"
+  url="https://lookback.sitespeed.info/"
 />
 
 そこでお勧めしたいのが「サイトスピード 振り返り・競合比較」です。
@@ -87,5 +87,5 @@ Core Web Vitalsの各指標（LCP、INP、CLS）について、現在のパフ�
   code="sitespeed-chronicle"
   title="サイトスピード 振り返り・競合比較"
   description="URLを入力するだけで、5年間の推移と競合比較を無料で確認。サイトスピード改善の第一歩に。"
-  url="https://chronicle.sitespeed.info/"
+  url="https://lookback.sitespeed.info/"
 />

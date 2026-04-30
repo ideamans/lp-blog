@@ -46,7 +46,7 @@ categories:
   code="sitespeed-chronicle"
   title="サイトスピード 振り返り・競合比較"
   description="CrUXデータに基づき、自社サイトの5年間のスピード推移と競合比較を無料で可視化。チーム全員で同じデータを見ることで、スピードへの問題意識を客観的に共有できます。"
-  url="https://chronicle.sitespeed.info/"
+  url="https://lookback.sitespeed.info/"
 />
 
 たとえば、トヨタ自動車（toyota.jp）のレポートを見てみましょう。
@@ -73,5 +73,5 @@ LCP（ページのメインコンテンツが表示されるまでの時間）�
   code="sitespeed-chronicle"
   title="サイトスピード 振り返り・競合比較"
   description="URLを入力するだけで、5年間の推移と競合比較を無料で確認。サイトスピードの問題意識をチームで共有する出発点に。"
-  url="https://chronicle.sitespeed.info/"
+  url="https://lookback.sitespeed.info/"
 />

@@ -11,7 +11,7 @@
 
 サイトスピード 振り返り・競合比較は、GoogleのChrome User Experience Report（CrUX）データを活用して、任意のWebサイトとその競合サイトのCore Web Vitalsを5年間にわたって比較・分析できる無料ツール。自社サイトの相対的なパフォーマンス位置を把握するのに最適。
 
-**公式サイト**: https://chronicle.sitespeed.info/
+**公式サイト**: https://lookback.sitespeed.info/
 
 製品コード: sitespeed-chronicle
 

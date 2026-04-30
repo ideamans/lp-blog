@@ -84,5 +84,5 @@ Chrome User Experience Report（CrUX）データを手軽に閲覧できるツ�
   code="sitespeed-chronicle"
   title="サイトスピード 振り返り・競合比較"
   description="CrUXデータを活用した無料のCore Web Vitals比較ツール。競合との実力差を把握し、現実的な目標設定ができます。"
-  url="https://chronicle.sitespeed.info/"
+  url="https://lookback.sitespeed.info/"
 />
