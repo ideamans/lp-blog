@@ -1,0 +1,48 @@
+# textlint 設定（第1段階）
+# - 誤検知が多い ja-no-successive-word / no-doubled-joshi は当面除外
+# - コロン終端は箇条書きの導入文として許可（意図的な用法）
+# - frameworks/ 配下は執筆者向け資料のため対象外（.textlintignore で除外）
+filters:
+  comments: true
+  allowlist:
+    allow:
+      - "アイデアマンズ"
+      - "LightFile"
+      - "Ranklet4"
+      - "PageSpeed"
+      - "Core Web Vitals"
+      - "Google"
+      - "ChatGPT"
+      - "Claude"
+rules:
+  preset-ja-technical-writing:
+    # 文の長さ・記号系（運用負荷が高いため当面オフ）
+    sentence-length: false
+    max-comma: false
+    max-ten: false
+    max-kanji-continuous-len: false
+    arabic-kanji-numbers: false
+    no-exclamation-question-mark: false
+    ja-no-weak-phrase: false
+    ja-no-redundant-expression: false
+    # 誤検知が多いルール（第2段階で再検討）
+    ja-no-successive-word: false
+    no-doubled-joshi: false
+    # 致命度の高い誤りに絞って検知
+    ja-no-abusage: true
+    ja-unnatural-alphabet: true
+    no-mix-dearu-desumasu: true
+    ja-no-mixed-period:
+      periodMark: "。"
+      allowPeriodMarks:
+        - ":" # 半角コロン（箇条書きの導入文）
+        - "：" # 全角コロン（箇条書きの導入文）
+        - "─" # em-dash（余韻を残す修辞、── として末尾に置くケース）
+    no-double-negative-ja: true
+    no-doubled-conjunctive-particle-ga: true
+    no-doubled-conjunction: true
+    no-nfd: true
+    no-invalid-control-character: true
+    no-zero-width-spaces: true
+    no-hankaku-kana: true
+    no-unmatched-pair: true

@@ -1,0 +1,19 @@
+# 公開記事以外（書き手向けの内部資料・ビルド成果物）を除外
+node_modules/
+.vitepress/
+.git/
+public/
+.claude/
+.cursor/
+.drafts/
+categories/
+agents/
+
+# 書き手向け内部資料（公開されない／執筆ガイドや製品メタ情報）
+frameworks/
+products/
+policy/
+ideas.md
+README.md
+CLAUDE.md
+WRITING.md
