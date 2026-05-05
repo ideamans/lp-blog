@@ -3,130 +3,152 @@ import { computed } from 'vue'
 import { useData, useRoute, withBase } from 'vitepress'
 import { data as posts } from './posts.data.js'
 import { authors } from '../../authors'
+import { categories } from '../../categories'
 import { loadDefaultJapaneseParser } from 'budoux'
+import Dayjs from 'dayjs'
+import LeadBlock from './LeadBlock.vue'
 
 const { frontmatter: data } = useData()
-
 const route = useRoute()
 const parser = loadDefaultJapaneseParser()
 
-// Resolve relative image path to absolute path
+const categoryNameByBasename = new Map(categories.map((c) => [c.basename, c.name]))
+
 const resolvedImage = computed(() => {
   const image = data.value.image
   if (!image) return null
-
-  // Already absolute path or URL
-  if (image.startsWith('/') || image.startsWith('http')) {
-    return image
-  }
-
-  // Relative path (e.g., ./image.jpg)
-  // route.path is like /posts/2025/image-optimization.html
-  const dir = route.path.replace(/[^/]+$/, '') // /posts/2025/
+  if (image.startsWith('/') || image.startsWith('http')) return image
+  const dir = route.path.replace(/[^/]+$/, '')
   const imagePath = image.startsWith('./') ? image.slice(2) : image
   return withBase(dir + imagePath)
 })
 
-function findCurrentIndex() {
-  return posts.findIndex((p) => p.url === route.path)
-}
+const currentIndex = computed(() => posts.findIndex((p) => p.url === route.path))
+const date = computed(() => posts[currentIndex.value]?.date)
 
-// use the customData date which contains pre-resolved date info
-const date = computed(() => posts[findCurrentIndex()]?.date)
-
-// Get author information
 const author = computed(() => {
   const authorId = data.value.author || data.value.id || 'miyanaga'
-  return authors.find(a => a.username === authorId) || authors[0]
+  return authors.find((a) => a.username === authorId) || authors[0]
 })
 
-// Split title with BudouX
 const titleSegments = computed(() => {
   if (!data.value.title) return []
   return parser.parse(data.value.title)
 })
 
-// Format date in Japanese
-function formatJapaneseDate(dateObj: any) {
-  if (!dateObj) return ''
-  // dateObj could be an object with string property or just a string
-  const dateStr = dateObj.string || dateObj
+function formatJapaneseDate(d: any) {
+  if (!d) return ''
+  const dateStr = d?.string || d
   if (!dateStr) return ''
-  const d = new Date(dateStr)
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+  const dt = new Date(dateStr)
+  return `${dt.getFullYear()}年${dt.getMonth() + 1}月${dt.getDate()}日`
 }
 
-// Get related posts from the same category
+function formatBylineDate(d: any) {
+  if (!d) return ''
+  const dateStr = d?.string || d
+  if (!dateStr) return ''
+  return Dayjs(dateStr).format('DD MMM YYYY').toUpperCase()
+}
+
+function formatRelatedDate(d: any) {
+  if (!d) return ''
+  const dateStr = d?.string || d
+  if (!dateStr) return ''
+  return Dayjs(dateStr).format('YYYY · MMM DD').toUpperCase()
+}
+
+const sectionLabel = computed(() => {
+  const first = data.value.categories?.[0]
+  if (!first) return ''
+  return categoryNameByBasename.get(first) || first
+})
+
+const sectionBasename = computed(() => data.value.categories?.[0])
+
+const articleNumber = computed(() => {
+  const idx = currentIndex.value
+  if (idx < 0) return ''
+  return String(posts.length - idx).padStart(3, '0')
+})
+
+const breadcrumbMonth = computed(() => {
+  const d: any = date.value
+  const dateStr = d?.string || d
+  if (!dateStr) return ''
+  return Dayjs(dateStr).format('MMMM').toUpperCase()
+})
+
+const breadcrumbYear = computed(() => {
+  const d: any = date.value
+  const dateStr = d?.string || d
+  if (!dateStr) return ''
+  return Dayjs(dateStr).format('YYYY')
+})
+
 const relatedPosts = computed(() => {
   const currentCategories = data.value.categories || []
   if (currentCategories.length === 0) return []
-
   const currentPath = route.path
-
   return posts
-    .filter(post => {
-      // Exclude current post
+    .filter((post) => {
       if (post.url === currentPath) return false
-      // Check if post has any matching category
       const postCategories = post.categories || []
-      return postCategories.some(cat => currentCategories.includes(cat))
+      return postCategories.some((cat) => currentCategories.includes(cat))
     })
-    .slice(0, 5) // Take only first 5
+    .slice(0, 3)
 })
 </script>
 
 <template>
-  <article class="max-w-5xl mx-auto">
-    <header class="pt-6 pb-2 space-y-4">
-      <h1
-        class="text-3xl leading-9 font-bold text-base-content tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-snug"
-      >
-        <span v-for="(segment, index) in titleSegments" :key="index">
-          <span class="whitespace-nowrap">{{ segment }}</span>
-        </span>
-      </h1>
+  <article>
+    <LeadBlock
+      :kicker="sectionLabel ? `— ${sectionLabel}, no. ${articleNumber} —` : '— Editorial —'"
+      :title="data.title"
+      :title-segments="titleSegments"
+      :deck="data.description"
+      heading="h1"
+    >
+      <template #meta>
+        <span style="color: var(--ink-soft)">FILED</span>&nbsp;<b>{{ formatBylineDate(date) }}</b>
+        <template v-if="sectionLabel">
+          &nbsp;&nbsp;·&nbsp;&nbsp;
+          <span style="color: var(--ink-soft)">SECTION</span>&nbsp;<b>{{ sectionLabel }}</b>
+        </template>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <span style="color: var(--ink-soft)">BY</span>&nbsp;<b>{{ author.name }}</b>
+      </template>
+    </LeadBlock>
 
-      <!-- Author Info -->
-      <div class="flex items-center space-x-4">
-        <img
-          :src="author.image"
-          :alt="author.name"
-          class="w-16 h-16 rounded-full"
-        >
-        <div class="text-sm text-base-content/60">
-          <div class="font-bold text-base-content">{{ author.name }}</div>
-          <div>{{ author.title }}</div>
-          <div>{{ formatJapaneseDate(date) }}</div>
-        </div>
-      </div>
-
-      <!-- OGP Image -->
-      <img
-        v-if="resolvedImage"
-        :src="resolvedImage"
-        :alt="data.title"
-        class="w-full rounded-box"
-      >
-    </header>
-
-    <div class="pb-16">
-      <Content class="prose max-w-none pb-8 prose-base-content prose-p:text-base-content/80 prose-strong:text-secondary prose-strong:font-bold prose-strong:bg-secondary/10 prose-strong:px-1 prose-headings:text-base-content prose-a:text-primary hover:prose-a:text-primary/80" />
+    <div v-if="resolvedImage" class="art-hero">
+      <img :src="resolvedImage" :alt="data.title" />
     </div>
 
-    <!-- Related Articles -->
-    <section v-if="relatedPosts.length > 0" class="border-t border-base-300 pt-8 pb-8">
-      <h2 class="text-2xl font-bold text-base-content mb-6">こちらもおすすめ</h2>
-      <div class="space-y-4">
-        <article v-for="post in relatedPosts" :key="post.url" class="border-l-4 border-primary pl-4">
-          <a :href="post.url" class="block hover:opacity-75 transition-opacity">
-            <h3 class="text-lg font-semibold text-base-content mb-1">{{ post.title }}</h3>
-            <div class="text-sm text-base-content/60">
-              {{ formatJapaneseDate(post.date) }}
-            </div>
+    <div class="art-body">
+      <main class="art-main">
+        <Content />
+
+        <div class="art-author">
+          <img :src="author.image" :alt="author.name" />
+          <div class="meta">
+            <div><b>{{ author.name }}</b></div>
+            <div>{{ author.title }}</div>
+            <div v-if="date">{{ formatJapaneseDate(date) }}</div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <section v-if="relatedPosts.length > 0" class="art-related">
+      <div class="lbl">Related —— 同欄の記事</div>
+      <div class="grid">
+        <div v-for="post in relatedPosts" :key="post.url" class="rel">
+          <a :href="post.url">
+            <div class="d">{{ formatRelatedDate(post.date) }}</div>
+            <h4>{{ post.title }}</h4>
           </a>
-        </article>
+        </div>
       </div>
     </section>
-
   </article>
 </template>

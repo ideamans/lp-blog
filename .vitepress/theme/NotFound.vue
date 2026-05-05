@@ -1,7 +1,10 @@
 <template>
-  <div class="text-center py-16">
-    <h1 class="text-3xl font-bold text-base-content">404 Page Not Found</h1>
-    <p class="mt-4 text-base-content/60">お探しのページが見つかりませんでした。</p>
-    <a href="/" class="btn btn-primary mt-6">トップページへ戻る</a>
-  </div>
+  <section class="lead">
+    <div class="lead-kicker">— Erratum · 404 —</div>
+    <h2 style="font-family: var(--serif-en); font-style: italic;">Page Not Found</h2>
+    <p class="lead-deck">お探しのページは見つかりませんでした。リンクが古い、もしくはアドレスに誤りがある可能性があります。</p>
+    <div class="lead-meta">
+      <a href="/" style="color: var(--vermilion); text-decoration: none;">— RETURN TO FRONT PAGE</a>
+    </div>
+  </section>
 </template>

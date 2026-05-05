@@ -51,22 +51,19 @@ const trackClick = () => {
     :href="trackedUrl"
     target="_blank"
     rel="noopener noreferrer"
-    class="not-prose block border border-base-300 rounded-box p-4 hover:bg-base-200 transition-colors group"
+    class="product-link"
     @click="trackClick"
   >
-    <div class="flex items-start gap-4">
+    <div class="product-link-lbl">§ Related Product · 関連製品</div>
+    <div class="product-link-row">
       <img
         :src="`https://alogorithm2.ideamans.com/v2/icon.svg?seed=${code}&width=128`"
         :alt="title"
-        class="w-16 h-16 flex-shrink-0"
+        class="product-link-icon"
       >
-      <div class="flex-1 min-w-0">
-        <h3 class="text-lg font-bold text-base-content group-hover:text-primary transition-colors">
-          {{ title }}
-        </h3>
-        <p class="text-sm text-base-content/70 mt-1">
-          {{ description }}
-        </p>
+      <div class="product-link-text">
+        <div class="product-link-title">{{ title }}</div>
+        <div class="product-link-desc">{{ description }}</div>
       </div>
     </div>
   </a>

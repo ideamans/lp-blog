@@ -5,8 +5,9 @@ import Home from './Home.vue'
 import Article from './Article.vue'
 import Category from './Category.vue'
 import NotFound from './NotFound.vue'
-import { data as categories } from './categories.data.js'
+import { categories } from '../../categories'
 import Dayjs from 'dayjs'
+import { data as posts } from './posts.data.js'
 
 const { page, frontmatter } = useData()
 const { path } = useRoute()
@@ -15,56 +16,53 @@ const category = computed(() => {
   const paths = path.split('/')
   if (paths[1] !== 'categories') return null
   const basename = (paths[2] || '').replace('.html', '')
-  return categories.find((category) => category.basename === basename)
+  return categories.find((c) => c.basename === basename)
+})
+
+const todayMeta = computed(() => {
+  const now = Dayjs()
+  return {
+    year: now.format('YYYY')
+  }
+})
+
+const stripUrls = computed(() => {
+  return [
+    { label: 'サイトスピード', basename: 'sitespeed' },
+    { label: 'Core Web Vitals', basename: 'core-web-vitals' },
+    { label: '画像最適化', basename: 'image-fitness' },
+    { label: 'AI活用', basename: 'ai-utilization' },
+    { label: 'Web設計', basename: 'web-architecture' }
+  ].filter((s) => categories.some((c) => c.basename === s.basename))
 })
 </script>
 
 <template>
-  <div class="antialiased bg-base-100 text-base-content min-h-screen">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 xl:max-w-6xl xl:px-0">
-      <nav class="flex justify-between items-center py-10 font-bold">
-        <a
-          class="text-3xl flex flex-row items-center"
-          href="/"
-          aria-label="ideaman's Today"
-        >
-          <img
-            class="inline-block mr-2"
-            style="width: 256px; height: 54px"
-            alt="logo"
-            src="/today-inline.svg"
-          />
-          <span
-            v-if="!frontmatter.index"
-            class="hidden md:inline text-4xl"
-            style="color: rgb(85, 85, 85)"
-            >Today</span
-          >
-        </a>
-        <div class="text-sm text-base-content/60 leading-5">
-          <a
-            class="hover:text-primary transition-colors"
-            href="https://www.ideamans.com/"
-            target="_blank"
-            rel="noopener"
-            >アイデアマンズ株式会社 →</a
-          >
-        </div>
+  <div class="ed-page">
+    <header class="mast mast-center">
+      <h1 class="mast-title">
+        <a href="/">ideaman's <span class="en">Today</span></a>
+      </h1>
+      <div class="mast-en">
+        軽快なWebサイトを実現するための新常識
+      </div>
+      <nav class="mast-strap">
+        <a v-for="s in stripUrls" :key="s.basename" :href="`/categories/${s.basename}.html`">{{ s.label }}</a>
+        <a href="https://www.ideamans.com/" target="_blank" rel="noopener">ideamans inc. →</a>
       </nav>
-    </div>
-    <main class="max-w-5xl mx-auto px-4 sm:px-6">
+    </header>
+
+    <main>
       <Home v-if="frontmatter.index" />
       <Category v-else-if="category" :category="category" />
       <NotFound v-else-if="page.isNotFound" />
       <Article v-else />
     </main>
-    <footer class="footer footer-center p-4 bg-neutral text-neutral-content mt-16">
-      <aside>
-        <p>
-          Copyright © {{ Dayjs().year() }} - All right reserved by
-          <a href="https://www.ideamans.com/" class="link link-secondary">ideaman's Inc.</a>
-        </p>
-      </aside>
+
+    <footer class="ed-foot">
+      <div><b>ideaman's Today</b> · ideamans inc. · est. 2002</div>
+      <div>Set in Noto Serif JP &amp; EB Garamond</div>
+      <div>© {{ todayMeta.year }} <a href="https://www.ideamans.com/">ideamans inc.</a></div>
     </footer>
   </div>
 </template>
