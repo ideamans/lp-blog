@@ -1,11 +1,13 @@
-# textlint 設定（第1段階）
-# - 誤検知が多い ja-no-successive-word / no-doubled-joshi は当面除外
-# - コロン終端は箇条書きの導入文として許可（意図的な用法）
-# - frameworks/ 配下は執筆者向け資料のため対象外（.textlintignore で除外）
+# textlint 設定（第2段階）
+# - 読みやすさ系ルール（ja-no-successive-word / no-doubled-joshi）を有効化
+# - コロン終端・em-dash 終端は意図的な修辞として allowPeriodMarks で許可
+# - ── (em-dash 連続) は ja-no-successive-word の誤検知になるため allowlist で抑制
+# - frameworks/ 配下など書き手向け資料は対象外（.textlintignore で除外）
 filters:
   comments: true
   allowlist:
     allow:
+      # 固有名詞
       - "アイデアマンズ"
       - "LightFile"
       - "Ranklet4"
@@ -14,6 +16,11 @@ filters:
       - "Google"
       - "ChatGPT"
       - "Claude"
+      # 修辞記号（em-dash の連続使用は意図的）
+      - "──"
+      - "─"
+      # 慣用表現（同語連続が言葉の本来の形）
+      - "まあまあ"
 rules:
   preset-ja-technical-writing:
     # 文の長さ・記号系（運用負荷が高いため当面オフ）
@@ -25,9 +32,9 @@ rules:
     no-exclamation-question-mark: false
     ja-no-weak-phrase: false
     ja-no-redundant-expression: false
-    # 誤検知が多いルール（第2段階で再検討）
-    ja-no-successive-word: false
-    no-doubled-joshi: false
+    # 読みやすさ系（第2段階で有効化）
+    ja-no-successive-word: true
+    no-doubled-joshi: true
     # 致命度の高い誤りに絞って検知
     ja-no-abusage: true
     ja-unnatural-alphabet: true
