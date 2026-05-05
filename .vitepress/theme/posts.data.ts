@@ -5,6 +5,7 @@ export interface Post {
   url: string
 
   title: string
+  description: string
   excerpt: string
   id: string
   date: string
@@ -23,6 +24,7 @@ export default createContentLoader('posts/**/*.md', {
         id: frontmatter.id,
         date: frontmatter.date,
         categories: frontmatter.categories || [],
+        description: frontmatter.description || '',
         excerpt: excerpt || '',
         url
       }))
