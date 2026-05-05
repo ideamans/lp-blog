@@ -44,7 +44,7 @@ const stripUrls = computed(() => {
         <a href="/">ideaman's <span class="en">Today</span></a>
       </h1>
       <div class="mast-en">
-        Webフィットネスの普及に向けた新しいWebの新常識
+        軽快なWebサイトを実現するための新常識
       </div>
       <nav class="mast-strap">
         <a v-for="s in stripUrls" :key="s.basename" :href="`/categories/${s.basename}.html`">{{ s.label }}</a>
