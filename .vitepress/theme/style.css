@@ -157,7 +157,7 @@ body {
   line-height: 1.95;
   color: var(--ink-soft);
   margin: 0 0 16px;
-  max-width: 760px;
+  max-width: none;
 }
 .lead-meta {
   font-family: var(--serif-en);
