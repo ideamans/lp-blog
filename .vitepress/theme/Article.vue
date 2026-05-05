@@ -6,6 +6,7 @@ import { authors } from '../../authors'
 import { categories } from '../../categories'
 import { loadDefaultJapaneseParser } from 'budoux'
 import Dayjs from 'dayjs'
+import LeadBlock from './LeadBlock.vue'
 
 const { frontmatter: data } = useData()
 const route = useRoute()
@@ -101,35 +102,23 @@ const relatedPosts = computed(() => {
 
 <template>
   <article>
-    <header class="art-head">
-      <div class="art-crumb">
-        <a href="/">ideaman's TODAY</a>
-        <span class="vermilion"> / </span>
-        <a v-if="breadcrumbYear" href="/">{{ breadcrumbYear }}</a>
-        <span v-if="breadcrumbMonth">
-          <span class="vermilion"> / </span>{{ breadcrumbMonth }}
-        </span>
-        <span v-if="sectionLabel">
-          <span class="vermilion"> / </span>
-          <a v-if="sectionBasename" :href="`/categories/${sectionBasename}.html`">{{ sectionLabel }}</a>
-          <span v-else>{{ sectionLabel }}</span>
-        </span>
-      </div>
-
-      <div v-if="sectionLabel" class="art-kicker">— {{ sectionLabel }}, no. {{ articleNumber }} —</div>
-
-      <h1 class="art-title">
-        <span v-for="(segment, index) in titleSegments" :key="index" class="whitespace-nowrap">{{ segment }}</span>
-      </h1>
-
-      <p v-if="data.description" class="art-deck">{{ data.description }}</p>
-
-      <div class="art-byline">
-        <div><span style="color: var(--ink-soft)">BY</span>&nbsp;<b>{{ author.name }}</b></div>
-        <div v-if="date"><span style="color: var(--ink-soft)">FILED</span>&nbsp;<b>{{ formatBylineDate(date) }}</b></div>
-        <div v-if="sectionLabel"><span style="color: var(--ink-soft)">SECTION</span>&nbsp;<b>{{ sectionLabel }}</b></div>
-      </div>
-    </header>
+    <LeadBlock
+      :kicker="sectionLabel ? `— ${sectionLabel}, no. ${articleNumber} —` : '— Editorial —'"
+      :title="data.title"
+      :title-segments="titleSegments"
+      :deck="data.description"
+      heading="h1"
+    >
+      <template #meta>
+        <span style="color: var(--ink-soft)">FILED</span>&nbsp;<b>{{ formatBylineDate(date) }}</b>
+        <template v-if="sectionLabel">
+          &nbsp;&nbsp;·&nbsp;&nbsp;
+          <span style="color: var(--ink-soft)">SECTION</span>&nbsp;<b>{{ sectionLabel }}</b>
+        </template>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <span style="color: var(--ink-soft)">BY</span>&nbsp;<b>{{ author.name }}</b>
+      </template>
+    </LeadBlock>
 
     <div v-if="resolvedImage" class="art-hero">
       <img :src="resolvedImage" :alt="data.title" />

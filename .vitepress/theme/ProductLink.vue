@@ -62,8 +62,8 @@ const trackClick = () => {
         class="product-link-icon"
       >
       <div class="product-link-text">
-        <h3 class="product-link-title">{{ title }}</h3>
-        <p class="product-link-desc">{{ description }}</p>
+        <div class="product-link-title">{{ title }}</div>
+        <div class="product-link-desc">{{ description }}</div>
       </div>
     </div>
   </a>

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
 import { data as posts } from './posts.data.js'
 import { categories } from '../../categories'
 import Dayjs from 'dayjs'
+import { loadDefaultJapaneseParser } from 'budoux'
+import LeadBlock from './LeadBlock.vue'
 
-const { frontmatter } = useData()
-
+const parser = loadDefaultJapaneseParser()
 const categoryNameByBasename = new Map(categories.map((c) => [c.basename, c.name]))
 
 const lead = computed(() => posts[0])
+const leadTitleSegments = computed(() => (lead.value?.title ? parser.parse(lead.value.title) : []))
 const recent = computed(() => posts.slice(1, 21))
 
 function fmtIdxDate(s: string) {
@@ -31,7 +32,6 @@ function categoryLabel(p: { categories?: string[] }) {
 function leadDeck(p: { description?: string; excerpt?: string }) {
   if (!p) return ''
   if (p.description) return p.description
-  // strip HTML tags from excerpt
   return (p.excerpt || '').replace(/<[^>]*>/g, '').trim().slice(0, 220)
 }
 
@@ -42,20 +42,25 @@ function rowExcerpt(p: { description?: string; excerpt?: string }) {
 </script>
 
 <template>
-  <section v-if="lead" class="lead">
-    <div class="lead-kicker">— Featured · Today's Lead —</div>
-    <h2><a :href="lead.url">{{ lead.title }}</a></h2>
-    <p class="lead-deck">{{ leadDeck(lead) }}</p>
-    <div class="lead-meta">
+  <LeadBlock
+    v-if="lead"
+    kicker="— Featured · Today's Lead —"
+    :title="lead.title"
+    :title-segments="leadTitleSegments"
+    :href="lead.url"
+    :deck="leadDeck(lead)"
+    heading="h2"
+  >
+    <template #meta>
       <span style="color: var(--ink-soft)">FILED</span>&nbsp;<b>{{ fmtLeadDate(lead.date) }}</b>
       &nbsp;&nbsp;·&nbsp;&nbsp;
       <span style="color: var(--ink-soft)">SECTION</span>&nbsp;<b>{{ categoryLabel(lead) || 'Editorial' }}</b>
-    </div>
-  </section>
+    </template>
+  </LeadBlock>
 
   <section class="index-wrap">
     <div class="index-head">
-      <h3>{{ frontmatter.subtext || '最新の記事' }} ──── Recent Entries</h3>
+      <h3>最新の記事 ──── Recent Entries</h3>
       <span class="smc">Showing {{ recent.length }} of {{ posts.length }}</span>
     </div>
 
