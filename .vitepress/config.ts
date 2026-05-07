@@ -1,4 +1,5 @@
 import Dayjs from 'dayjs'
+import markdownItCjkFriendly from 'markdown-it-cjk-friendly'
 import { defineConfig } from 'vitepress'
 import { genFeed } from './genFeed.js'
 import { genLLMs } from './genLLMs.js'
@@ -82,6 +83,8 @@ export default defineConfig({
   },
   markdown: {
     config: (md) => {
+      // CJK句読点の隣で **太字** が機能しない CommonMark の問題を回避
+      md.use(markdownItCjkFriendly)
       md.use(crosslinkPlugin, {
         getSlug: (env) => {
           // posts/2025/example.md → example
