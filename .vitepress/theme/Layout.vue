@@ -46,6 +46,9 @@ const stripUrls = computed(() => {
       <div class="mast-en">
         軽快なWebサイトを実現するための新常識
       </div>
+      <div class="mast-search" style="margin-top: 0.5rem">
+        <div data-knowledge-search data-set="today" data-label="記事を検索"></div>
+      </div>
       <nav class="mast-strap">
         <a v-for="s in stripUrls" :key="s.basename" :href="`/categories/${s.basename}.html`">{{ s.label }}</a>
         <a href="https://www.ideamans.com/" target="_blank" rel="noopener">ideamans inc. →</a>
