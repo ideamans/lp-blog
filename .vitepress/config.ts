@@ -6,6 +6,8 @@ import { genLLMs } from './genLLMs.js'
 import { copyFrontmatterImages } from './copyImages.js'
 import { crosslinkPlugin } from './crosslink-plugin.js'
 import { categories as categoryList } from '../categories.js'
+// @ts-ignore ビルド済みの単一ファイル（services/knowledge が配布元）
+import { buildKnowledgePackage } from './knowledge-indexer.mjs'
 
 const categoryNameByBasename = new Map(categoryList.map((c) => [c.basename, c.name]))
 
@@ -140,6 +142,39 @@ export default defineConfig({
     await genFeed(config)
     await genLLMs(config)
     await copyFrontmatterImages(config)
+
+    // ナレッジパッケージ。deploy.sh が knowledge.ideamans.com へ送る。
+    const pkg = await buildKnowledgePackage(config, {
+      id: 'today',
+      title: "ideaman's Today",
+      description: 'Webフィットネスの普及に向けた新しいWebの新常識',
+      origin: 'https://today.ideamans.com',
+      include: 'posts/**/*.md',
+      out: 'knowledge/today.zip',
+      outline: { group_by: 'date' },
+      search: { facets: ['category_path', 'author', 'year'] },
+      map: (page) => {
+        const fm = page.frontmatter
+        if (fm.draft) return null
+
+        const categories: string[] = Array.isArray(fm.categories) ? fm.categories : []
+        return {
+          title: fm.title,
+          summary: fm.description ?? page.excerpt,
+          published_at: fm.date,
+          category_path: categories,
+          category_labels: categories.map(
+            (id: string) => categoryList.find((c) => c.basename === id)?.name ?? id
+          ),
+          // このサイトは著者IDを id で持つ（authorId ではない）
+          author: fm.id,
+          image: fm.ogp ?? fm.image,
+        }
+      },
+    })
+    console.log(
+      `[knowledge] ${pkg.out} (${pkg.documents}件 / ${(pkg.bytes / 1024).toFixed(1)}KB / ${pkg.generation})`
+    )
   },
   transformHead: ({ head, pageData }) => {
     const ogpBgUrl = 'https://today.ideamans.com/ogp-background.jpg'
