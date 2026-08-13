@@ -547,7 +547,7 @@ a.idx-row:hover .idx-title,
   gap: 28px;
 }
 .art-related .rel a { color: inherit; text-decoration: none; display: block; }
-.art-related .rel a:hover h4 { color: var(--vermilion); }
+.art-related .rel a:hover .t { color: var(--vermilion); }
 .art-related .rel .d {
   font-family: var(--serif-en);
   font-size: 11px;
@@ -556,7 +556,7 @@ a.idx-row:hover .idx-title,
   text-transform: uppercase;
   font-style: italic;
 }
-.art-related .rel h4 {
+.art-related .rel .t {
   font-family: var(--serif-jp);
   font-weight: 600;
   font-size: 16px;

@@ -145,7 +145,7 @@ const relatedPosts = computed(() => {
         <div v-for="post in relatedPosts" :key="post.url" class="rel">
           <a :href="post.url">
             <div class="d">{{ formatRelatedDate(post.date) }}</div>
-            <h4>{{ post.title }}</h4>
+            <div class="t">{{ post.title }}</div>
           </a>
         </div>
       </div>
