@@ -1,7 +1,7 @@
 import Dayjs from 'dayjs'
 import markdownItCjkFriendly from 'markdown-it-cjk-friendly'
 import { defineConfig } from 'vitepress'
-import { genFeed } from './genFeed.js'
+import { withMachineReadability } from 'vitepress-machine-readability'
 import { genLLMs } from './genLLMs.js'
 import { copyFrontmatterImages } from './copyImages.js'
 import { crosslinkPlugin } from './crosslink-plugin.js'
@@ -59,7 +59,8 @@ function indexTwitterImageUrl(): string {
   return image.href
 }
 
-export default defineConfig({
+export default defineConfig(
+  withMachineReadability({
   mpa: true,
   lang: 'ja',
   title: `ideaman's Today`,
@@ -148,7 +149,6 @@ export default defineConfig({
     ]
   ],
   buildEnd: async (config) => {
-    await genFeed(config)
     await genLLMs(config)
     await copyFrontmatterImages(config)
 
@@ -185,6 +185,20 @@ export default defineConfig({
       `[knowledge] ${pkg.out} (${pkg.documents}件 / ${(pkg.bytes / 1024).toFixed(1)}KB / ${pkg.generation})`
     )
   },
+  // 月別・カテゴリは動的ルートで、テンプレートの frontmatter がそのまま
+  // title になる（5ページが揃って同じ <title> だった）。params から作る。
+  transformPageData: (pageData) => {
+    const params = pageData.params as Record<string, string> | undefined
+    if (!params) return
+    if (params.year && params.month) {
+      return { title: `${params.year}年${Number(params.month)}月の記事` }
+    }
+    if (params.category) {
+      const label = categoryList.find((c) => c.basename === params.category)?.name ?? params.category
+      return { title: `${label}の記事` }
+    }
+  },
+
   transformHead: ({ head, pageData }) => {
     const ogpBgUrl = 'https://today.ideamans.com/ogp-background.jpg'
     const siteUrl = 'https://today.ideamans.com'
@@ -374,4 +388,18 @@ export default defineConfig({
     }
   },
   appearance: false
-})
+},
+  // 検索エンジンとAIから読める状態にする。既存の transformHead / buildEnd は潰さない
+  {
+    hostname: 'https://today.ideamans.com/',
+    organization: {
+      name: 'アイデアマンズ株式会社',
+      url: 'https://www.ideamans.com/'
+    },
+    map: { description: ['description'] },
+    feed: { pattern: 'posts/**/*.md', title: "ideaman's Today" },
+    // Markdown の原本も配る（LLMがHTMLから本文を復元しなくて済む）
+    markdownSource: true,
+    lint: 'warn'
+  })
+)

@@ -12,6 +12,10 @@ import { data as posts } from './posts.data.js'
 const { page, frontmatter } = useData()
 const { path } = useRoute()
 
+// トップではサイト名がそのままページの見出しなので h1。
+// 記事ページでは記事タイトルが h1 なので、ここは見出しにしない。
+const isHome = computed(() => path === '/' || path === '/index.html')
+
 const category = computed(() => {
   const paths = path.split('/')
   if (paths[1] !== 'categories') return null
@@ -40,9 +44,12 @@ const stripUrls = computed(() => {
 <template>
   <div class="ed-page">
     <header class="mast mast-center">
-      <h1 class="mast-title">
+      <!-- サイト名はヘッダーのブランド表示。記事ページで h1 にすると
+           記事タイトルと合わせて h1 が2つになる（33ページで起きていた）。
+           トップだけはサイト名がページの見出しそのものなので h1 にする -->
+      <component :is="isHome ? 'h1' : 'p'" class="mast-title">
         <a href="/">ideaman's <span class="en">Today</span></a>
-      </h1>
+      </component>
       <div class="mast-en">
         軽快なWebサイトを実現するための新常識
       </div>
