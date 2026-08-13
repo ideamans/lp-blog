@@ -191,11 +191,18 @@ export default defineConfig(
     const params = pageData.params as Record<string, string> | undefined
     if (!params) return
     if (params.year && params.month) {
-      return { title: `${params.year}年${Number(params.month)}月の記事` }
+      const month = Number(params.month)
+      return {
+        title: `${params.year}年${month}月の記事`,
+        description: `${params.year}年${month}月にideaman's Todayで公開した記事の一覧です。表示速度や画像最適化にまつわるWebの新常識を、短い記事で紹介しています。`
+      }
     }
     if (params.category) {
       const label = categoryList.find((c) => c.basename === params.category)?.name ?? params.category
-      return { title: `${label}の記事` }
+      return {
+        title: `${label}の記事`,
+        description: `${label}に関する記事の一覧です。ideaman's Todayでは、表示速度や画像最適化にまつわるWebの新常識を、短い記事で紹介しています。`
+      }
     }
   },
 
