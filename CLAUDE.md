@@ -215,3 +215,12 @@ X_AI_POSTING_PROD=    # 本番環境フラグ（設定時のみ実投稿）
 ## 弊社製品情報
 
 @products 以下に情報を記載。記事との関連性に応じて参照。
+
+## デプロイは main へのマージで自動（GitHub Actions）
+
+2026-11-06 から `.github/workflows/deploy.yml` が、main への push（PR のマージ）でビルドして web-g6 へ出す。
+PR ではビルドだけを確かめる。手元の `deploy.sh` は予備（CI が止まったとき用）。
+
+- 鍵は secret `WEB_G6_DEPLOY_KEY`。web-g6 側でこのサイト専用に門番 `deploy-gate today.ideamans.com today` へ縛ってあり、
+  できるのは `vhosts/today.ideamans.com/html` への rsync と、knowledge の `incoming/today.zip` の置き換えだけ
+- ビルドに手を入れたら（コマンド・出力先・前後の処理）、`deploy.sh` と `deploy.yml` の両方を直す

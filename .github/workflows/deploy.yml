@@ -1,0 +1,64 @@
+name: Deploy
+
+# PR ではビルドだけ確かめ、main への push（PR のマージ）で web-g6 へ出す。
+# 鍵は web-g6 側でこのサイト専用に門番（/root/web/bin/deploy-gate today.ideamans.com today）へ縛ってあり、
+# できるのは vhosts/today.ideamans.com/html への rsync と、knowledge の incoming/today.zip の置き換えだけ。
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# ビルド時の日付処理（記事日付・RSS・llms等）を日本時間で行う
+env:
+  TZ: Asia/Tokyo
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+
+      - name: Setup SSH key
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          WEB_G6_DEPLOY_KEY: ${{ secrets.WEB_G6_DEPLOY_KEY }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$WEB_G6_DEPLOY_KEY" > ~/.ssh/web-g6-deploy
+          chmod 600 ~/.ssh/web-g6-deploy
+          # web-g6 のホスト鍵を固定する（ssh-keyscan で取ると、なりすましたサーバーにも繋いでしまう）
+          echo "66.42.39.68 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO/AE8mcqA55qtO8MaQyAaSaWWF7355fPCEtuEzOQSmX" > ~/.ssh/known_hosts
+
+      # 宛先は vhosts/today.ideamans.com/html の中からの相対
+      - name: Deploy via rsync
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/web-g6-deploy -o IdentitiesOnly=yes" \
+            .vitepress/dist/ \
+            root@66.42.39.68:
+
+      # ナレッジの zip（検索・LLM向け）。門番が incoming/today.zip だけを置き換える
+      - name: Send knowledge zip
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: ssh -i ~/.ssh/web-g6-deploy -o IdentitiesOnly=yes root@66.42.39.68 knowledge-zip < knowledge/today.zip
+
+      - name: Remove SSH key
+        if: always()
+        run: rm -f ~/.ssh/web-g6-deploy
