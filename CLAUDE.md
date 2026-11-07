@@ -22,7 +22,7 @@ yarn x-ai-posting # X(Twitter)自動投稿エージェントの実行
 - **Vue 3** - UIフレームワーク（Composition API）
 - **Tailwind CSS 3** + **DaisyUI 4** - スタイリング（Nordテーマ、ダーク）
 - **TypeScript** - 型安全性
-- **パッケージは yarn（`yarn.lock`）だけ。** CI も `yarn install --frozen-lockfile`（Node 24）。
+- **パッケージは yarn（`yarn.lock`）だけ。** CI も `yarn install --frozen-lockfile`（Node 26）。
   2024-03 から更新されていなかった pnpm-lock.yaml は 2026-11-06 に消した
 - **依存はメジャーを据え置いて上げる。** vitepress 1.x（2.x は別作業）、Tailwind 3 / daisyUI 4、
   budoux は 0.7 のまま（版が変わると改行位置の出力が変わりうる）
