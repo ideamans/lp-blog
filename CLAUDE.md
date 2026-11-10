@@ -18,7 +18,7 @@ yarn x-ai-posting # X(Twitter)自動投稿エージェントの実行
 ## アーキテクチャ
 
 ### 技術スタック
-- **VitePress 1.0** - 静的サイトジェネレーター（MPA モード）
+- **VitePress 2（2.0.0-alpha）** - 静的サイトジェネレーター（MPA モード、vite 8）。2026-11 に 1.6 から移行
 - **Vue 3** - UIフレームワーク（Composition API）
 - **Tailwind CSS 3** + **DaisyUI 4** - スタイリング（Nordテーマ、ダーク）
 - **TypeScript** - 型安全性
@@ -40,8 +40,10 @@ yarn x-ai-posting # X(Twitter)自動投稿エージェントの実行
 ### ビルドプロセス
 
 VitePressの`buildEnd`フックで以下を実行:
-1. `genFeed.ts` → `feed.rss` 生成（最新10件）
-2. `genLLMs.ts` → `llms-full.txt` 生成（全記事のマークダウン）
+1. `vitepress-machine-readability`（`withMachineReadability` の `feed`）→ `feed.xml` 生成
+2. `genLLMs.ts` → `llms-full.txt` 生成（全記事のテキスト）。描画した HTML からタグを外すだけなので、
+   **VitePress の出力の書き方が変わると混ざりものが出る**（2.x で見出しアンカーのゼロ幅スペースが
+   `&ZeroWidthSpace;` から `&#8203;` に変わり、全見出しの末尾に残った。両方を消している）
 3. `copyFrontmatterImages.ts` → frontmatterのimage画像をdistにコピー
 
 OGP画像は`https://banners.ideamans.com`で動的生成、またはfrontmatterのimageフィールドで指定。
